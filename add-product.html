@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Your Product - Superb MegaCorp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen p-4 sm:p-8 font-sans text-slate-800">
+    <div class="max-w-2xl mx-auto bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-extrabold text-slate-900">List Your Product</h1>
+            <a href="/" class="text-sm text-blue-600 font-bold hover:underline">Back to Store</a>
+        </div>
+        
+        <form id="productForm" class="space-y-5">
+            <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Product Name</label>
+                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Category</label>
+                    <select id="category" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        <option value="Tea">Tea</option>
+                        <option value="Coffee">Coffee</option>
+                        <option value="Spices">Spices</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Price (₹)</label>
+                    <input type="number" id="mrp" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Description</label>
+                <textarea id="description" rows="3" class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Product Image</label>
+                <input type="file" id="image" accept="image/*" required class="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            </div>
+
+            <button type="submit" id="submitBtn" class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-md transition-colors">
+                Add Product
+            </button>
+            <div id="message" class="hidden mt-4 text-center font-bold text-sm"></div>
+        </form>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCLKQlCGn4yClPSNhjc_KMuH7IwOlNEayc",
+            projectId: "dist-7b242",
+            storageBucket: "dist-7b242.firebasestorage.app",
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        document.getElementById('productForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const msg = document.getElementById('message');
+            btn.disabled = true;
+            btn.innerText = 'Uploading...';
+            msg.classList.add('hidden');
+
+            try {
+                const file = document.getElementById('image').files[0];
+                const storageRef = ref(storage, 'products/' + Date.now() + '_' + file.name);
+                const snapshot = await uploadBytes(storageRef, file);
+                const imageUrl = await getDownloadURL(snapshot.ref);
+
+                await addDoc(collection(db, 'products'), {
+                    name: document.getElementById('name').value,
+                    category: document.getElementById('category').value,
+                    mrp: Number(document.getElementById('mrp').value),
+                    description: document.getElementById('description').value,
+                    image: imageUrl,
+                    createdAt: serverTimestamp(),
+                    status: 'active'
+                });
+
+                document.getElementById('productForm').reset();
+                msg.innerText = 'Product Added Successfully! It will now appear on the store.';
+                msg.className = 'mt-4 text-center font-bold text-sm text-green-600 block';
+            } catch (error) {
+                console.error(error);
+                if (error.code === 'storage/unauthorized') {
+                    msg.innerText = 'Error: Storage Rules need to be updated to allow customer uploads.';
+                } else {
+                    msg.innerText = 'Error: ' + error.message;
+                }
+                msg.className = 'mt-4 text-center font-bold text-sm text-red-600 block';
+            } finally {
+                btn.disabled = false;
+                btn.innerText = 'Add Product';
+            }
+        });
+    </script>
+</body>
+</html>

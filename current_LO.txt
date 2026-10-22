@@ -1,0 +1,1 @@
+function LO(){return(0,k.jsx)(`div`,{className:`pt-20 sm:pt-24`,children:(0,k.jsx)(OO,{isHomePage:!1})})}

@@ -1,0 +1,1 @@
+const fs = require('fs'); const content = fs.readFileSync('assets/index-v29-1790684309157.js', 'utf8'); const matches = content.match(/bg-white p-[^,\}\]+/g); console.log(Array.from(new Set(matches)).join('\n'));

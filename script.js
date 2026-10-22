@@ -1,0 +1,1 @@
+const fs = require('fs'); const content = fs.readFileSync('assets/index-v29-1790684309157.js', 'utf8'); let idx = 0; while ((idx = content.indexOf('bg-white p-', idx)) !== -1) { const end = content.indexOf('\', idx); console.log(content.substring(idx, end)); idx = end; }

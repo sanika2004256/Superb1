@@ -1,0 +1,1679 @@
+/* ==========================================================================
+   SUPERB MEGACORP - ULTRA LUXURY & MODERN AESTHETICS DESIGN SYSTEM
+   ========================================================================== */
+
+/* 1. Global Typography & Font Enhancements */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary-red: #d92906;
+  --primary-red-hover: #b91c1c;
+  --primary-gradient: linear-gradient(135deg, #e11d48 0%, #dc2626 50%, #991b1b 100%);
+  --gold-accent: #f59e0b;
+  --gold-gradient: linear-gradient(135deg, #fef08a 0%, #f59e0b 60%, #d97706 100%);
+  --card-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 0 1px 1px rgba(0, 0, 0, 0.04);
+  --card-hover-shadow: 0 20px 40px -10px rgba(220, 38, 38, 0.12), 0 0 1px 1px rgba(220, 38, 38, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.8);
+}
+
+html {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  scroll-behavior: smooth !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #f8fafc !important;
+  color: #1e293b !important;
+  overflow-x: hidden !important;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+  border: 2px solid #f1f5f9;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Luxury Text Selection */
+::selection {
+  background: #fee2e2 !important;
+  color: #991b1b !important;
+}
+
+/* Headings with Modern High-End Typography */
+h1, h2, h3, .font-serif {
+  font-family: 'Outfit', 'Playfair Display', sans-serif !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* ==========================================================================
+   2. Header & Navigation Bar
+   ========================================================================== */
+header nav {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Logo hover sheen */
+header a[aria-label*="Home"] img {
+  transition: transform 0.25s ease, filter 0.25s ease !important;
+}
+header a[aria-label*="Home"]:hover img {
+  transform: scale(1.03) !important;
+  filter: drop-shadow(0 4px 12px rgba(217, 41, 6, 0.15)) !important;
+}
+
+/* Navigation Links */
+header nav a {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+header nav a:hover {
+  color: var(--primary-red) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Navigation Action Buttons (Search, Wishlist, Cart, Profile) */
+header nav button,
+header nav a[href*="login"] {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+header nav button:hover,
+header nav a[href*="login"]:hover {
+  background-color: #fee2e2 !important;
+  color: var(--primary-red) !important;
+  transform: scale(1.06) !important;
+}
+
+/* "Enquire Now" Primary CTA in Header */
+header button.bg-gradient-to-r,
+header button[type="button"]:has(svg):has(span) {
+  background: var(--primary-gradient) !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+header button.bg-gradient-to-r:hover,
+header button[type="button"]:has(svg):has(span):hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(220, 38, 38, 0.45) !important;
+  filter: brightness(1.08) !important;
+}
+
+/* "HOT" Franchise Badge Pulse */
+span.bg-gradient-to-r.from-red-600 {
+  animation: hotPulse 2s infinite !important;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5) !important;
+}
+@keyframes hotPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+  }
+}
+
+/* News/Specialization Ticker Bar */
+.bg-red-600,
+div.inline-flex.bg-red-600 {
+  border-radius: 9999px !important;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25) !important;
+}
+
+/* ==========================================================================
+   3. Hero Section
+   ========================================================================== */
+/* Hero Heading Glow */
+h1.text-white {
+  font-family: 'Outfit', 'Playfair Display', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.025em !important;
+  text-shadow: none !important;
+}
+
+/* Primary buttons throughout (All elements using bg-[#d92906]) */
+.bg-\[\#d92906\],
+button.bg-\[\#d92906\],
+a.bg-\[\#d92906\] {
+  background: var(--primary-gradient) !important;
+  border-radius: 9999px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.35) !important;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: none !important;
+}
+.bg-\[\#d92906\]:hover,
+button.bg-\[\#d92906\]:hover,
+a.bg-\[\#d92906\]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 28px rgba(220, 38, 38, 0.48) !important;
+  filter: brightness(1.08) !important;
+}
+.bg-\[\#d92906\]:active,
+button.bg-\[\#d92906\]:active,
+a.bg-\[\#d92906\]:active {
+  transform: scale(0.98) !important;
+}
+
+/* Hero Secondary CTA Button */
+.bg-white\/10.backdrop-blur-md {
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 9999px !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.bg-white\/10.backdrop-blur-md:hover {
+  background: rgba(255, 255, 255, 0.28) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* ==========================================================================
+   4. Floating Metrics / Stats Section (#stats)
+   ========================================================================== */
+#stats > div,
+.stats-section-wrap > div {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.6) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Gradient accent bar on top of Stats */
+#stats > div::before,
+.stats-section-wrap > div::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #dc2626 0%, #f59e0b 25%, #10b981 50%, #3b82f6 75%, #8b5cf6 100%) !important;
+}
+
+/* Stat numbers with crisp typography */
+#stats .font-extrabold,
+#stats [class*="text-2xl"],
+#stats [class*="text-3xl"],
+#stats [class*="text-4xl"] {
+  font-family: 'Outfit', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.03em !important;
+}
+
+/* ==========================================================================
+   5. "Who We Are" Section (#about)
+   ========================================================================== */
+#about {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%) !important;
+}
+
+#about div.rounded-xl:not(.bg-slate-900),
+#about div.rounded-2xl:not(.bg-slate-900) {
+  border-radius: 18px !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  background: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+#about div.rounded-xl:not(.bg-slate-900):hover,
+#about div.rounded-2xl:not(.bg-slate-900):hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08) !important;
+  border-color: rgba(217, 41, 6, 0.25) !important;
+}
+
+/* Floating "Board of Directors" badge on team photo */
+#about div.bg-slate-900,
+#about div.rounded-xl.bg-slate-900 {
+  background: #0f172a !important;
+  color: #ffffff !important;
+  border: 1px solid #1e293b !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3) !important;
+  transform: none !important;
+}
+#about div.bg-slate-900 span {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  display: inline-block !important;
+}
+
+/* ==========================================================================
+   6. 4 Renowned Brands Section (#brands)
+   ========================================================================== */
+#brands {
+  background: #ffffff !important;
+}
+
+.brand-card,
+.brand-card-item {
+  display: flex !important;
+  background-color: #ffffff !important;
+  border-radius: 22px !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 6px 24px -4px rgba(15, 23, 42, 0.05) !important;
+  padding: 24px 28px !important;
+  gap: 24px !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.brand-card:hover,
+.brand-card-item:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12) !important;
+  border-color: #cbd5e1 !important;
+}
+
+.brand-card-img-wrap {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.brand-card img,
+.brand-card-img-wrap img {
+  border-radius: 14px !important;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  object-fit: contain !important;
+}
+
+.brand-card:hover img,
+.brand-card-item:hover .brand-card-img-wrap img {
+  transform: scale(1.05) !important;
+}
+
+.brand-card-content {
+  flex: 1 1 0% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 100% !important;
+}
+
+.brand-card-content > div:first-child {
+  flex-grow: 1 !important;
+}
+
+.brand-card-content > div:last-child {
+  margin-top: auto !important;
+  padding-top: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.brand-card-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  background: var(--primary-gradient) !important;
+  color: #ffffff !important;
+  font-family: inherit !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.015em !important;
+  line-height: 1 !important;
+  padding: 0 24px !important;
+  width: auto !important;
+  min-width: 114px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  box-sizing: border-box !important;
+  border-radius: 9999px !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.28) !important;
+  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  vertical-align: middle !important;
+}
+
+.brand-card-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 22px rgba(220, 38, 38, 0.42) !important;
+  filter: brightness(1.08) !important;
+  color: #ffffff !important;
+}
+
+.brand-card-btn:active {
+  transform: scale(0.97) !important;
+}
+
+@media (max-width: 639px) {
+  .brand-card-content > div:last-child {
+    justify-content: center !important;
+    width: 100% !important;
+  }
+  .brand-card-btn {
+    width: 100% !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    font-size: 14px !important;
+    border-radius: 12px !important;
+  }
+}
+
+/* ==========================================================================
+   7. Products Showcase Section (#products)
+   ========================================================================== */
+#products {
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%) !important;
+}
+
+#products button.rounded-full,
+#products button.rounded-xl {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-weight: 600 !important;
+  border-radius: 9999px !important;
+}
+
+#products div.bg-white:has(button) {
+  border-radius: 20px !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 6px 20px -2px rgba(15, 23, 42, 0.04) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+}
+
+#products div.bg-white:has(button):hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.1) !important;
+  border-color: rgba(220, 38, 38, 0.2) !important;
+}
+
+/* ==========================================================================
+   8. "Why Choose Superb" Bento Section
+   ========================================================================== */
+section.bg-white.relative div.rounded-xl,
+section.bg-white.relative div.rounded-2xl {
+  border-radius: 20px !important;
+  border: 1px solid #f1f5f9 !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+section.bg-white.relative div.rounded-xl:hover,
+section.bg-white.relative div.rounded-2xl:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 14px 32px -4px rgba(15, 23, 42, 0.08) !important;
+}
+
+/* ==========================================================================
+   9. Tea Spot Franchise Section (#franchise)
+   ========================================================================== */
+#franchise {
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%) !important;
+}
+
+#franchise .rounded-2xl.border {
+  border-radius: 20px !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+#franchise .rounded-2xl.border:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08) !important;
+  border-color: rgba(220, 38, 38, 0.3) !important;
+}
+
+/* ==========================================================================
+   10. Executive Management (#management)
+   ========================================================================== */
+#management {
+  background: #ffffff !important;
+}
+
+#management .aspect-square,
+.director-card-img-wrap {
+  border-radius: 18px 18px 0 0 !important;
+  overflow: hidden !important;
+}
+
+#management div.bg-white:has(.aspect-square) {
+  border-radius: 20px !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04) !important;
+  transition: all 0.3s ease !important;
+  overflow: hidden !important;
+}
+#management div.bg-white:has(.aspect-square):hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09) !important;
+}
+
+/* ==========================================================================
+   11. Testimonials & Social Proof (#testimonials)
+   ========================================================================== */
+#testimonials {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%) !important;
+}
+
+#testimonials div.bg-white {
+  border-radius: 24px !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 0 12px 35px -5px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* ==========================================================================
+   12. Blogs & Articles (#blogs)
+   ========================================================================== */
+#blogs {
+  background: #ffffff !important;
+}
+
+#blogs div.bg-white {
+  border-radius: 20px !important;
+  border: 1px solid #f1f5f9 !important;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04) !important;
+  transition: all 0.3s ease !important;
+  overflow: hidden !important;
+}
+
+#blogs div.bg-white:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09) !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* ==========================================================================
+   13. Contact & Quick Enquiry Section (#contact)
+   ========================================================================== */
+#contact {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%) !important;
+}
+
+#contact input,
+#contact select,
+#contact textarea {
+  border-radius: 12px !important;
+  border: 1.5px solid #e2e8f0 !important;
+  transition: all 0.2s ease !important;
+  font-family: inherit !important;
+  background-color: #ffffff !important;
+}
+
+#contact input:focus,
+#contact select:focus,
+#contact textarea:focus {
+  border-color: var(--primary-red) !important;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.12) !important;
+  outline: none !important;
+}
+
+#contact button[type="submit"] {
+  background: var(--primary-gradient) !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.35) !important;
+  transition: all 0.25s ease !important;
+  border: none !important;
+}
+#contact button[type="submit"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 28px rgba(220, 38, 38, 0.45) !important;
+  filter: brightness(1.08) !important;
+}
+
+/* ==========================================================================
+   14. Footer Aesthetics
+   ========================================================================== */
+footer {
+  background: #0b0f19 !important;
+  position: relative !important;
+}
+
+footer::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, #dc2626 0%, #f59e0b 25%, #10b981 50%, #3b82f6 75%, #8b5cf6 100%) !important;
+}
+
+footer a {
+  transition: color 0.2s ease, transform 0.2s ease !important;
+}
+footer a:hover {
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   15. Cart Drawer & Modals
+   ========================================================================== */
+.fixed.inset-0.bg-black\/50,
+.fixed.inset-0.bg-black\/60 {
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  background: rgba(15, 23, 42, 0.5) !important;
+}
+
+/* Remove black shadow and dark overlay from home page hero */
+.hero-mobile-bg {
+  display: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ==========================================================================
+   16. Hero Slider - Mobile View & Content Alignment (max-width: 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Dedicated mobile banners for all 5 hero carousel slides */
+  /* Slide 1: Superb Amrutulya Tea */
+  .hero-slide-bg[style*="Banner-3"] {
+    background-image: url('/images/amruttulya-tea-Banner-3-mobile.jpg') !important;
+    background-position: center bottom !important;
+    background-size: cover !important;
+  }
+
+  /* Slide 2: Superb Mega Corp - Executive Boardroom & Skyline */
+  .hero-slide-bg[style*="boardroom"] {
+    background-image: url('/images/superb-boardroom-executive-mobile.jpg') !important;
+    background-position: center bottom !important;
+    background-size: cover !important;
+  }
+
+  /* Slide 3: Superb Pomo Global Export - Bhagwa Pomegranates & Orchard */
+  .hero-slide-bg[style*="pomo"] {
+    background-image: url('/images/superb-pomo-export-mobile.jpg') !important;
+    background-position: center bottom !important;
+    background-size: cover !important;
+  }
+
+  /* Slide 4: Superb Beverages & Vending - Dispenser, Espresso & Cafe */
+  .hero-slide-bg[style*="vending"] {
+    background-image: url('/images/superb-beverages-vending-mobile.jpg') !important;
+    background-position: center calc(100% + 40px) !important;
+    background-size: cover !important;
+  }
+
+  /* Slide 5: Vizuki Hi-Tech Agro - Red Tractor & Farmland */
+  .hero-slide-bg[style*="vizuki"] {
+    background-image: url('/images/vizuki-hitech-agro-mobile.jpg') !important;
+    background-position: center bottom !important;
+    background-size: cover !important;
+  }
+
+  /* Elevated hero container height on mobile for perfect breathing room */
+  .relative.min-h-\[580px\] {
+    min-height: 630px !important;
+    height: 630px !important;
+  }
+
+  /* Content container aligned cleanly at top */
+  .hero-slide-bg + div + div {
+    align-items: flex-start !important;
+    padding-top: 20px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .hero-slide-bg + div + div > div {
+    width: 100% !important;
+  }
+
+  /* Soft cinematic top vignette for razor-sharp typography contrast */
+  .hero-slide-bg::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.72) 0%, rgba(15, 23, 42, 0.35) 45%, rgba(15, 23, 42, 0.02) 68%, rgba(15, 23, 42, 0.55) 100%) !important;
+    pointer-events: none !important;
+  }
+
+  /* Franchise Badge */
+  .hero-slide-bg + div + div > div > div:first-child {
+    padding: 4px 10px !important;
+    font-size: 11px !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* Title Typography */
+  .hero-slide-bg + div + div h1 {
+    font-size: 1.45rem !important;
+    line-height: 1.2 !important;
+    font-weight: 800 !important;
+    margin-top: 4px !important;
+    margin-bottom: 6px !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75) !important;
+  }
+
+  /* Subtitle Typography */
+  .hero-slide-bg + div + div p {
+    font-size: 0.825rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 12px !important;
+    color: rgba(241, 245, 249, 0.95) !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65) !important;
+    max-width: 320px !important;
+  }
+
+  /* Side-by-side CTA buttons anchored lower down towards the bottom of the screen */
+  .hero-slide-bg + div + div .flex-col {
+    position: absolute !important;
+    bottom: 50px !important;
+    left: 16px !important;
+    right: 16px !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+    padding-top: 0px !important;
+    width: auto !important;
+    margin-top: 0 !important;
+    z-index: 20 !important;
+  }
+
+  .hero-slide-bg + div + div .flex-col > * {
+    flex: 1 1 0 !important;
+    padding: 10px 8px !important;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  /* Pagination dots positioned with clean margin */
+  .absolute.bottom-6 {
+    bottom: 14px !important;
+  }
+}
+
+
+
+/* ==========================================================================
+   ABOUT US PAGE ULTRA-ATTRACTIVE STYLES (BALANCED SPACING & ELEVATED PROPORTIONS)
+   ========================================================================== */
+.about-hero-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbfc 40%, #f1f5f9 100%);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+.about-hero-glow-1 {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 550px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(217, 41, 6, 0.08) 0%, rgba(245, 158, 11, 0.05) 50%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+.about-hero-glow-2 {
+  position: absolute;
+  bottom: -40px;
+  right: 10%;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.06) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+.about-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(254, 242, 242, 0.9);
+  border: 1px solid rgba(252, 165, 165, 0.6);
+  color: #d92906;
+  font-size: 0.725rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  box-shadow: 0 2px 8px rgba(217, 41, 6, 0.06);
+}
+.about-hero-title {
+  font-family: 'Outfit', 'Playfair Display', sans-serif !important;
+  font-size: clamp(2.25rem, 5vw, 3.5rem) !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.025em !important;
+}
+.about-hero-subtitle {
+  font-size: clamp(0.95rem, 1.8vw, 1.125rem);
+  color: #475569;
+  line-height: 1.65;
+  max-width: 44rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* KPI Stat Cards Grid */
+.about-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.875rem;
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+}
+@media (min-width: 640px) {
+  .about-kpi-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+}
+.about-kpi-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.15rem;
+  text-align: left;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  .about-kpi-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+.about-kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #d92906, #f59e0b);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.about-kpi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.1), 0 0 1px 1px rgba(217, 41, 6, 0.15);
+  border-color: rgba(217, 41, 6, 0.25);
+}
+.about-kpi-card:hover::before {
+  opacity: 1;
+}
+
+/* Timeline & Journey */
+.about-journey-card {
+  background: #ffffff;
+  border-radius: 1.75rem;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.04);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  position: relative;
+  overflow: hidden;
+}
+.timeline-stepper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.25rem;
+  position: relative;
+  margin-top: 0;
+  padding-top: 0;
+}
+.timeline-step-item {
+  position: relative;
+  padding: 1.35rem 1.2rem;
+  border-radius: 1.25rem;
+  background: #f8fafc;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  transition: all 0.3s ease;
+}
+.timeline-step-item:hover {
+  background: #ffffff;
+  border-color: rgba(217, 41, 6, 0.3);
+  box-shadow: 0 10px 24px -4px rgba(217, 41, 6, 0.08);
+  transform: translateY(-3px);
+}
+.timeline-year-tag {
+  display: inline-block;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: #d92906;
+  margin-bottom: 0.35rem;
+}
+.timeline-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.975rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+.timeline-desc {
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.55;
+}
+
+/* Global Presence Badges */
+.global-country-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1rem;
+  border-radius: 0.875rem;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  transition: all 0.25s ease;
+  font-size: 0.825rem;
+}
+.global-country-chip:hover {
+  border-color: rgba(217, 41, 6, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px -2px rgba(15, 23, 42, 0.08);
+}
+
+/* Vision & Mission Cards */
+.vision-card {
+  background: linear-gradient(145deg, rgba(255, 251, 235, 0.7) 0%, #ffffff 60%, rgba(254, 243, 199, 0.25) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  border-radius: 1.75rem;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  box-shadow: 0 8px 24px -4px rgba(245, 158, 11, 0.08);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.vision-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 36px -8px rgba(245, 158, 11, 0.16);
+  border-color: rgba(245, 158, 11, 0.8);
+}
+.mission-card {
+  background: linear-gradient(145deg, rgba(254, 242, 242, 0.7) 0%, #ffffff 60%, rgba(255, 228, 230, 0.25) 100%);
+  border: 1px solid rgba(248, 113, 113, 0.5);
+  border-radius: 1.75rem;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  box-shadow: 0 8px 24px -4px rgba(217, 41, 6, 0.08);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.mission-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 36px -8px rgba(217, 41, 6, 0.16);
+  border-color: rgba(217, 41, 6, 0.8);
+}
+
+/* Core Values 4-Grid */
+.core-value-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  padding: 1.35rem 1.2rem;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.03);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.core-value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08);
+  border-color: rgba(217, 41, 6, 0.25);
+}
+
+/* Pillars Cards */
+.pillar-card {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  padding: 1.65rem 1.45rem;
+  box-shadow: 0 6px 20px -3px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -6px rgba(15, 23, 42, 0.09);
+  border-color: rgba(217, 41, 6, 0.25);
+}
+
+/* Directors Leadership Frame - Clean White Card, No Black Border */
+.directors-gold-frame {
+  position: relative;
+  padding: 0;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 1.75rem;
+  box-shadow: 0 10px 30px -4px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+.directors-gold-frame img {
+  border-radius: 0;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Corporate Call To Action */
+.about-cta-banner {
+  background: linear-gradient(135deg, #0b0f19 0%, #1e1b4b 50%, #0b0f19 100%);
+  border-radius: 2rem;
+  border: 1px solid rgba(217, 41, 6, 0.3);
+  padding: clamp(2rem, 5vw, 3.25rem);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.35);
+}
+
+/* Franchise Page Dedicated Luxury Styles */
+.franchise-hero-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.franchise-hero-glow-1 {
+  position: absolute;
+  top: -10%;
+  left: 20%;
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(circle, rgba(217, 41, 6, 0.08) 0%, rgba(217, 41, 6, 0) 70%);
+  border-radius: 9999px;
+  filter: blur(40px);
+  pointer-events: none;
+}
+.franchise-hero-glow-2 {
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  width: 32rem;
+  height: 32rem;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.09) 0%, rgba(245, 158, 11, 0) 70%);
+  border-radius: 9999px;
+  filter: blur(50px);
+  pointer-events: none;
+}
+.franchise-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #d92906;
+}
+.franchise-hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: #0f172a;
+}
+.franchise-hero-subtitle {
+  font-size: clamp(0.925rem, 2vw, 1.1rem);
+  line-height: 1.65;
+  color: #475569;
+}
+.franchise-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  max-width: 68rem;
+  margin: 0 auto;
+}
+@media (min-width: 640px) {
+  .franchise-kpi-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+}
+.franchise-kpi-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.15rem;
+  text-align: left;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  .franchise-kpi-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+.franchise-kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #d92906, #f59e0b);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.franchise-kpi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.1), 0 0 1px 1px rgba(217, 41, 6, 0.15);
+  border-color: rgba(217, 41, 6, 0.25);
+}
+.franchise-kpi-card:hover::before {
+  opacity: 1;
+}
+
+/* Franchise Outlet Showcase Frame */
+.franchise-showcase-frame {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 1.75rem;
+  box-shadow: 0 12px 36px -6px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+}
+.franchise-showcase-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Franchise Inclusions Card */
+.franchise-inclusions-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 1.75rem;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05);
+  position: relative;
+}
+
+/* Franchise Feature / Advantage Card */
+.franchise-advantage-card {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  padding: 1.65rem 1.45rem;
+  box-shadow: 0 6px 20px -3px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.franchise-advantage-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -6px rgba(15, 23, 42, 0.09);
+  border-color: rgba(217, 41, 6, 0.25);
+}
+
+/* 4 Steps Stepper */
+.franchise-step-card {
+  position: relative;
+  padding: 1.5rem 1.35rem;
+  border-radius: 1.25rem;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.franchise-step-card:hover {
+  border-color: rgba(217, 41, 6, 0.3);
+  box-shadow: 0 12px 28px -6px rgba(217, 41, 6, 0.1);
+  transform: translateY(-4px);
+}
+.franchise-step-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #d92906;
+  margin-bottom: 0.5rem;
+}
+
+/* ==========================================================================
+   CONTACT PAGE LUXURY STYLES
+   ========================================================================== */
+.contact-hero-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.contact-hero-glow-1 {
+  position: absolute;
+  top: -10%;
+  left: 20%;
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(circle, rgba(217, 41, 6, 0.08) 0%, rgba(217, 41, 6, 0) 70%);
+  border-radius: 9999px;
+  filter: blur(40px);
+  pointer-events: none;
+}
+.contact-hero-glow-2 {
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  width: 32rem;
+  height: 32rem;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.09) 0%, rgba(245, 158, 11, 0) 70%);
+  border-radius: 9999px;
+  filter: blur(50px);
+  pointer-events: none;
+}
+.contact-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #d92906;
+}
+.contact-hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: #0f172a;
+}
+.contact-hero-subtitle {
+  font-size: clamp(0.925rem, 2vw, 1.1rem);
+  line-height: 1.65;
+  color: #475569;
+}
+.contact-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  max-width: 68rem;
+  margin: 0 auto;
+}
+@media (min-width: 640px) {
+  .contact-kpi-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+}
+.contact-kpi-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.15rem;
+  text-align: left;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  .contact-kpi-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+.contact-kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #d92906, #f59e0b);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.contact-kpi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.1), 0 0 1px 1px rgba(217, 41, 6, 0.15);
+  border-color: rgba(217, 41, 6, 0.25);
+}
+.contact-kpi-card:hover::before {
+  opacity: 1;
+}
+
+/* Contact Department Card */
+.contact-dept-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  padding: 1.35rem 1.2rem;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.03);
+  transition: all 0.3s ease;
+  position: relative;
+}
+.contact-dept-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.09);
+  border-color: rgba(217, 41, 6, 0.3);
+}
+
+/* Contact FAQ Card */
+.contact-faq-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  padding: 1.5rem 1.35rem;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.03);
+  transition: all 0.3s ease;
+}
+.contact-faq-card:hover {
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 10px 24px -4px rgba(245, 158, 11, 0.1);
+  transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   BLOG PAGE LUXURY STYLES
+   ========================================================================== */
+.blog-hero-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.blog-hero-glow-1 {
+  position: absolute;
+  top: -10%;
+  left: 20%;
+  width: 28rem;
+  height: 28rem;
+  background: radial-gradient(circle, rgba(217, 41, 6, 0.08) 0%, rgba(217, 41, 6, 0) 70%);
+  border-radius: 9999px;
+  filter: blur(40px);
+  pointer-events: none;
+}
+.blog-hero-glow-2 {
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  width: 32rem;
+  height: 32rem;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.09) 0%, rgba(245, 158, 11, 0) 70%);
+  border-radius: 9999px;
+  filter: blur(50px);
+  pointer-events: none;
+}
+.blog-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #d92906;
+}
+.blog-hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: #0f172a;
+}
+.blog-hero-subtitle {
+  font-size: clamp(0.925rem, 2vw, 1.1rem);
+  line-height: 1.65;
+  color: #475569;
+}
+.blog-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  max-width: 68rem;
+  margin: 0 auto;
+}
+@media (min-width: 640px) {
+  .blog-kpi-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+}
+.blog-kpi-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.15rem;
+  text-align: left;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  .blog-kpi-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+.blog-kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #d92906, #f59e0b);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.blog-kpi-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.1), 0 0 1px 1px rgba(217, 41, 6, 0.15);
+  border-color: rgba(217, 41, 6, 0.25);
+}
+.blog-kpi-card:hover::before {
+  opacity: 1;
+}
+
+/* Category Filter Pills */
+.blog-category-pill {
+  padding: 0.5rem 1.15rem;
+  border-radius: 9999px;
+  font-size: 0.825rem;
+  font-weight: 600;
+  background: #ffffff;
+  color: #475569;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  transition: all 0.25s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.blog-category-pill:hover {
+  border-color: rgba(217, 41, 6, 0.3);
+  color: #d92906;
+  background: #fff5f5;
+}
+.blog-category-pill.active {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+/* Featured Article Card */
+.blog-featured-card {
+  background: #ffffff;
+  border-radius: 1.75rem;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+.blog-featured-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -8px rgba(15, 23, 42, 0.12);
+  border-color: rgba(217, 41, 6, 0.3);
+}
+
+
+/* ==========================================================================
+   CONTACT PAGE NORMAL & BALANCED SPACING SYSTEM
+   ========================================================================== */
+.contact-main-container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2.75rem !important;
+  padding-top: 1.5rem !important;
+  padding-bottom: 2rem !important;
+}
+@media (min-width: 640px) {
+  .contact-main-container {
+    gap: 3.25rem !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+}
+
+.contact-section-header {
+  text-align: center;
+  max-width: 42rem;
+  margin: 0 auto 1.5rem auto !important;
+}
+@media (min-width: 640px) {
+  .contact-section-header {
+    margin-bottom: 1.85rem !important;
+  }
+}
+
+.contact-dept-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 205px;
+}
+.contact-dept-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(217, 41, 6, 0.12);
+  border-color: rgba(217, 41, 6, 0.3);
+}
+
+.contact-faq-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  padding: 1.65rem 1.45rem;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.contact-faq-card:hover {
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 10px 24px -4px rgba(245, 158, 11, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   BRANDS SECTION - MOBILE BALANCED & COMPACT SIZING
+   ========================================================================== */
+@media (max-width: 639px) {
+  .brand-section-wrapper {
+    padding: 34px 0 42px 0 !important;
+  }
+  .brand-container {
+    padding: 0 14px !important;
+  }
+  .brand-section-wrapper .mb-10,
+  .brand-section-wrapper .mb-14 {
+    margin-bottom: 20px !important;
+  }
+  .brand-section-wrapper span.text-\[\#d92906\] {
+    font-size: 11px !important;
+    padding: 3px 9px !important;
+  }
+  .brand-section-wrapper h2 {
+    font-size: 21px !important;
+    line-height: 1.28 !important;
+    margin-top: 6px !important;
+  }
+  .brand-section-wrapper p.text-slate-600 {
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    margin-top: 6px !important;
+  }
+  .brand-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  .brand-card,
+  .brand-card-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 12px 14px !important;
+    gap: 14px !important;
+    border-radius: 18px !important;
+    min-height: auto !important;
+    height: auto !important;
+    background: #ffffff !important;
+    box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05), 0 0 1px 1px rgba(0, 0, 0, 0.04) !important;
+    border: 1px solid rgba(226, 232, 240, 0.9) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+  .brand-card:active,
+  .brand-card-item:active {
+    transform: scale(0.99) !important;
+  }
+  .brand-card-img-wrap {
+    width: 88px !important;
+    min-width: 88px !important;
+    max-width: 88px !important;
+    height: 88px !important;
+    margin-bottom: 0 !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+    border-radius: 14px !important;
+    padding: 6px !important;
+    border: 1px solid rgba(226, 232, 240, 0.6) !important;
+  }
+  .brand-card-img-wrap img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.06)) !important;
+  }
+  .brand-card-content {
+    flex: 1 1 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: left !important;
+    min-width: 0 !important;
+  }
+  .brand-card-content > div:first-child {
+    flex-grow: 0 !important;
+  }
+  .brand-card-category {
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    text-align: left !important;
+    margin: 0 0 2px 0 !important;
+    color: #0f172a !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.01em !important;
+  }
+  .brand-card-title {
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    text-align: left !important;
+    margin: 0 0 4px 0 !important;
+    color: #dc2626 !important;
+    line-height: 1.2 !important;
+  }
+  .brand-card-desc {
+    font-size: 11.5px !important;
+    text-align: left !important;
+    line-height: 1.4 !important;
+    margin: 0 0 8px 0 !important;
+    color: #64748b !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  .brand-card-content > div:last-child {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    justify-content: flex-start !important;
+    width: auto !important;
+  }
+  .brand-card-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    min-width: 90px !important;
+    height: 29px !important;
+    min-height: 29px !important;
+    padding: 0 15px !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25) !important;
+    letter-spacing: 0.01em !important;
+  }
+}

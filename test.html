@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  const firebaseConfig = {
+      apiKey: "AIzaSyCLKQlCGn4yClPSNhjc_KMuH7IwOlNEayc",
+      projectId: "dist-7b242",
+  };
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  getDocs(collection(db, 'products')).then(snap => {
+    console.log("Success", snap.size);
+    document.body.innerHTML = "Success: " + snap.size;
+  }).catch(e => {
+    console.error(e);
+    document.body.innerHTML = "Error: " + e.message;
+  });
+</script>
+</body>
+</html>

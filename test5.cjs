@@ -1,0 +1,1 @@
+const fs = require('fs'); const content = fs.readFileSync('products-dump.html', 'utf8'); const matches = content.match(/class=\"[^\"]*bg-white[^\"]*w-[^\"]*\"/g) || []; console.log(Array.from(new Set(matches)).join('\n'));

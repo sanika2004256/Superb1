@@ -1,0 +1,62 @@
+{
+  "home": {
+    "status": "ok",
+    "hasHScrollDesktop": false,
+    "desktopScrollWidth": 1280,
+    "desktopClientWidth": 1280,
+    "hasHScrollMobile": false,
+    "mobileScrollWidth": 390,
+    "mobileClientWidth": 390,
+    "errors": []
+  },
+  "about": {
+    "status": "ok",
+    "hasHScrollDesktop": false,
+    "desktopScrollWidth": 1280,
+    "desktopClientWidth": 1280,
+    "hasHScrollMobile": false,
+    "mobileScrollWidth": 390,
+    "mobileClientWidth": 390,
+    "errors": []
+  },
+  "products": {
+    "status": "ok",
+    "hasHScrollDesktop": false,
+    "desktopScrollWidth": 1280,
+    "desktopClientWidth": 1280,
+    "hasHScrollMobile": false,
+    "mobileScrollWidth": 390,
+    "mobileClientWidth": 390,
+    "errors": []
+  },
+  "gallery": {
+    "status": "ok",
+    "hasHScrollDesktop": false,
+    "desktopScrollWidth": 1280,
+    "desktopClientWidth": 1280,
+    "hasHScrollMobile": false,
+    "mobileScrollWidth": 390,
+    "mobileClientWidth": 390,
+    "errors": []
+  },
+  "login": {
+    "status": "ok",
+    "hasHScrollDesktop": false,
+    "desktopScrollWidth": 1280,
+    "desktopClientWidth": 1280,
+    "hasHScrollMobile": false,
+    "mobileScrollWidth": 390,
+    "mobileClientWidth": 390,
+    "errors": []
+  },
+  "checkout": {
+    "status": "ok",
+    "hasHScrollDesktop": false,
+    "desktopScrollWidth": 1280,
+    "desktopClientWidth": 1280,
+    "hasHScrollMobile": false,
+    "mobileScrollWidth": 390,
+    "mobileClientWidth": 390,
+    "errors": []
+  }
+}

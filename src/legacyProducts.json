@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Instant Cardamom Chai Premix Box",
+    "category": "Instant Premix Boxes",
+    "mrp": 150,
+    "packing": "10 Single Serve Sachets",
+    "sku": "BOX-CARDAMOM-10",
+    "image": "/images/products/box_cardamom.png",
+    "status": "active"
+  },
+  {
+    "name": "Instant Masala Chai Premix Box",
+    "category": "Instant Premix Boxes",
+    "mrp": 150,
+    "packing": "10 Single Serve Sachets",
+    "sku": "BOX-MASALA-10",
+    "image": "/images/products/box_masala.png",
+    "status": "active"
+  },
+  {
+    "name": "Instant Ginger Chai Premix Box",
+    "category": "Instant Premix Boxes",
+    "mrp": 150,
+    "packing": "10 Single Serve Sachets",
+    "sku": "BOX-GINGER-10",
+    "image": "/images/products/box_ginger.png",
+    "status": "active"
+  },
+  {
+    "name": "Instant Coffee Premix Box",
+    "category": "Instant Premix Boxes",
+    "mrp": 150,
+    "packing": "10 Single Serve Sachets",
+    "sku": "BOX-COFFEE-10",
+    "image": "/images/products/box_coffee.png",
+    "status": "active"
+  },
+  {
+    "name": "Instant Plain Chai Premix Box",
+    "category": "Instant Premix Boxes",
+    "mrp": 150,
+    "packing": "10 Single Serve Sachets",
+    "sku": "BOX-PLAIN-10",
+    "image": "/images/products/box_plain.png",
+    "status": "active"
+  }
+]

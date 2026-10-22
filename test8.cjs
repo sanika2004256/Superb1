@@ -1,0 +1,1 @@
+const fs = require('fs'); const content = fs.readFileSync('products-dump.html', 'utf8'); const regex = /<div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8\">([\s\S]*?)<div class=\"grid/g; let match; while ((match = regex.exec(content)) !== null) { console.log(match[1]); }

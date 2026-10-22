@@ -1,0 +1,30 @@
+{
+  "name": "superb-admin-panel",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "acorn": "^8.18.0",
+    "archiver": "^8.0.0",
+    "autoprefixer": "^10.6.1",
+    "dotenv": "^18.0.1",
+    "express": "^5.2.1",
+    "firebase": "^12.19.0",
+    "postcss": "^8.5.28",
+    "puppeteer": "^25.11.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-icons": "^5.7.0",
+    "react-router-dom": "^7.18.4",
+    "recharts": "^3.10.1",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.3.0"
+  }
+}
