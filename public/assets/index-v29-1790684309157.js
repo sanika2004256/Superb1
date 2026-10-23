@@ -2037,40 +2037,39 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
      [p,m]=(0,_.useState)({}),
      [h,g]=(0,_.useState)(!1),
      [v,y]=(0,_.useState)(""),
-     [step,setStep]=(0,_.useState)(1),
-     [summaryConfirmed,setSummaryConfirmed]=(0,_.useState)(false);
+     [step,setStep]=(0,_.useState)(1);
 
   if(e.length===0)return(0,k.jsx)('div',{className:'pt-28 pb-20 bg-slate-50 min-h-screen',children:(0,k.jsxs)('div',{className:'max-w-md mx-auto p-8 bg-white rounded-3xl border border-slate-200 text-center space-y-4',children:[(0,k.jsx)('h2',{className:'text-xl font-bold font-serif text-slate-900',children:'Your Cart is Empty'}),(0,k.jsx)('p',{className:'text-xs text-slate-500',children:'Add products before proceeding to commercial checkout.'}),(0,k.jsx)(T,{to:'/products',className:'inline-block bg-[#d92906] text-white text-xs font-bold px-6 py-2.5 rounded-xl hover:bg-[#b91c1c] transition-colors',children:'Browse Products'})]})});
-
-  let isAddressValid=Boolean(
-    l.name&&l.name.trim().length>=2&&
-    l.email&&/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(l.email.trim())&&
-    l.phone&&l.phone.replace(/\D/g,"").length===10&&
-    l.address&&l.address.trim().length>=3&&
-    l.city&&l.city.trim().length>=2&&
-    l.pincode&&l.pincode.replace(/\D/g,"").length===6
-  );
 
   let validateAddress=()=>{
     let err={};
     if(!l.name.trim())err.name="Full name is required";
-    if(!l.email.trim()){err.email="Email address is required"}else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(l.email)){err.email="Valid email is required"}
+    if(!l.email.trim()){err.email="Email address is required"}else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(l.email.trim())){err.email="Valid email is required"}
     if(!l.phone.trim()){err.phone="Phone number is required"}else if(l.phone.replace(/\D/g,"").length!==10){err.phone="Enter a valid 10-digit number"}
     if(!l.address.trim())err.address="Street address is required";
     if(!l.city.trim())err.city="City is required";
     if(!l.pincode.trim()||l.pincode.replace(/\D/g,"").length!==6){err.pincode="Valid 6-digit Indian PIN code required"}
     m(err);
     if(Object.keys(err).length>0){
-      window.scrollTo({top:150,behavior:"smooth"});
+      let firstKey=Object.keys(err)[0];
+      let el=document.querySelector('input[name="'+firstKey+'"]')||document.querySelector('input');
+      if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.focus();}
       return false;
     }
     return true;
   };
 
+  let handleStep1Next=()=>{
+    if(validateAddress()){
+      setStep(2);
+      window.scrollTo({top:0,behavior:'smooth'});
+    }
+  };
+
   let b=()=>{
     let err={};
     if(!l.name.trim())err.name="Full name is required";
-    if(!l.email.trim()){err.email="Email address is required"}else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(l.email)){err.email="Valid email is required"}
+    if(!l.email.trim()){err.email="Email address is required"}else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(l.email.trim())){err.email="Valid email is required"}
     if(!l.phone.trim()){err.phone="Phone number is required"}else if(l.phone.replace(/\D/g,"").length!==10){err.phone="Enter a valid 10-digit number"}
     if(!l.address.trim())err.address="Street address is required";
     if(!l.city.trim())err.city="City is required";
@@ -2097,7 +2096,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                 }),
                 (0,k.jsx)('h1',{
                   className:'text-2xl sm:text-3xl font-extrabold font-serif text-slate-900',
-                  children:step===1?'1. Delivery & Address':step===2?'2. Order Summary':'3. Payment Process'
+                  children:step===1?'1. Address Form':step===2?'2. Payment & Order Summary':'3. Payment Details'
                 })
               ]
             }),
@@ -2113,7 +2112,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
           children:[(0,k.jsx)(Ir,{className:'w-4 h-4 shrink-0 mt-0.5'}),(0,k.jsxs)('div',{children:[(0,k.jsx)('strong',{className:'block font-bold',children:'Notice:'}),v]})]
         }),
 
-        // Top Step Progress Indicator
+        // Top Step Progress Indicator (Address Form -> Payment Summary -> Payment Details)
         (0,k.jsx)('div',{
           className:'bg-white rounded-2xl p-3.5 sm:p-5 mb-8 border border-slate-200/90 shadow-xs',
           children:(0,k.jsxs)('div',{
@@ -2124,33 +2123,33 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                 className:'flex items-center gap-2 cursor-pointer select-none',
                 children:[
                   (0,k.jsx)('div',{
-                    className:'w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ' + (isAddressValid&&step>1?'bg-emerald-500 text-white':step===1?'bg-[#d92906] text-white shadow-sm ring-4 ring-red-100':'bg-slate-200 text-slate-500'),
-                    children:isAddressValid&&step>1?'✓':'1'
+                    className:'w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ' + (step>1?'bg-emerald-500 text-white':step===1?'bg-[#d92906] text-white shadow-sm ring-4 ring-red-100':'bg-slate-200 text-slate-500'),
+                    children:step>1?'✓':'1'
                   }),
                   (0,k.jsx)('span',{
                     className:'text-xs transition-colors ' + (step===1?'font-bold text-slate-900':step>1?'font-semibold text-emerald-600':'font-medium text-slate-400'),
-                    children:'Address'
+                    children:'Address Form'
                   })
                 ]
               }),
-              (0,k.jsx)('div',{className:'flex-1 h-0.5 mx-2 sm:mx-4 transition-colors ' + (isAddressValid&&step>1?'bg-emerald-500':'bg-slate-200')}),
+              (0,k.jsx)('div',{className:'flex-1 h-0.5 mx-2 sm:mx-4 transition-colors ' + (step>1?'bg-emerald-500':'bg-slate-200')}),
               (0,k.jsxs)('div',{
                 onClick:()=>{if(validateAddress()){setStep(2);window.scrollTo({top:0,behavior:'smooth'});}},
                 className:'flex items-center gap-2 cursor-pointer select-none',
                 children:[
                   (0,k.jsx)('div',{
-                    className:'w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ' + (summaryConfirmed&&step>2?'bg-emerald-500 text-white':step===2?'bg-[#d92906] text-white shadow-sm ring-4 ring-red-100':'bg-slate-200 text-slate-500'),
-                    children:summaryConfirmed&&step>2?'✓':'2'
+                    className:'w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ' + (step>2?'bg-emerald-500 text-white':step===2?'bg-[#d92906] text-white shadow-sm ring-4 ring-red-100':'bg-slate-200 text-slate-500'),
+                    children:step>2?'✓':'2'
                   }),
                   (0,k.jsx)('span',{
                     className:'text-xs transition-colors ' + (step===2?'font-bold text-slate-900':step>2?'font-semibold text-emerald-600':'font-medium text-slate-400'),
-                    children:'Order Summary'
+                    children:'Payment Summary'
                   })
                 ]
               }),
-              (0,k.jsx)('div',{className:'flex-1 h-0.5 mx-2 sm:mx-4 transition-colors ' + (summaryConfirmed&&step>2?'bg-emerald-500':'bg-slate-200')}),
+              (0,k.jsx)('div',{className:'flex-1 h-0.5 mx-2 sm:mx-4 transition-colors ' + (step>2?'bg-emerald-500':'bg-slate-200')}),
               (0,k.jsxs)('div',{
-                onClick:()=>{if(validateAddress()&&summaryConfirmed){setStep(3);window.scrollTo({top:0,behavior:'smooth'});}},
+                onClick:()=>{if(validateAddress()){setStep(3);window.scrollTo({top:0,behavior:'smooth'});}},
                 className:'flex items-center gap-2 cursor-pointer select-none',
                 children:[
                   (0,k.jsx)('div',{
@@ -2159,7 +2158,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                   }),
                   (0,k.jsx)('span',{
                     className:'text-xs transition-colors ' + (step===3?'font-bold text-slate-900':'font-medium text-slate-400'),
-                    children:'Payment'
+                    children:'Payment Details'
                   })
                 ]
               })
@@ -2171,12 +2170,12 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
           onSubmit:async i=>{i.preventDefault();y('');let u=b();if(m(u),Object.keys(u).length>0){window.scrollTo({top:150,behavior:'smooth'});return}if(g(!0),d==='Razorpay'){try{await GO({amountInRupees:Math.round(a),receipt:'rcpt_'+Date.now().toString().slice(-8),customer:{name:l.name,email:l.email,phone:l.phone,company:l.companyName,gstin:l.gstin},onSuccess:async({paymentDetails:i})=>{try{let u={userId:s?.uid||null,customer:{name:l.name,email:l.email,phone:l.phone,address:l.address,city:l.city,state:l.state,pincode:l.pincode,companyName:l.companyName,gstin:l.gstin},items:e.map(e=>({id:e.product.id||'',name:e.product.name||'',sku:e.product.sku||'',packSize:e.product.packSize||'',quantity:e.quantity,rateType:e.rateType,unitPrice:e.unitPrice,totalPrice:e.totalPrice})),totals:{subtotal:t,gst:n,gstBreakdown:r,transportTerms:i,total:a},payment:{method:'Razorpay',status:'Success',paymentId:i.razorpay_payment_id,orderId:i.razorpay_order_id,signature:i.razorpay_signature},notes:l.notes,source:'website'},d=await ZL(u);o();c('/order-success/'+d)}catch(f){console.error('Failed to create order record:',f);y('Payment received but failed to record order. Please save reference: '+i.razorpay_payment_id)}},onDismiss:()=>{g(!1);y('Payment window closed. You can retry anytime.')}})}catch(p){console.error('Razorpay init error:',p);y(p.message||'Payment initiation failed. Please try another payment mode.');g(!1)}}else{try{let i={userId:s?.uid||null,customer:{name:l.name,email:l.email,phone:l.phone,address:l.address,city:l.city,state:l.state,pincode:l.pincode,companyName:l.companyName,gstin:l.gstin},items:e.map(e=>({id:e.product.id||'',name:e.product.name||'',sku:e.product.sku||'',packSize:e.product.packSize||'',quantity:e.quantity,rateType:e.rateType,unitPrice:e.unitPrice,totalPrice:e.totalPrice})),totals:{subtotal:t,gst:n,gstBreakdown:r,total:a},payment:{method:d,status:d==='COD'?'Pending COD':'Awaiting Verification',utrReference:l.utrReference},notes:l.notes,source:'website'},u=await ZL(i);o();c('/order-success/'+u)}catch(u){console.error('Failed to create manual payment order:',u);y(u.message||'Failed to confirm order. Please contact dispatch support.')}finally{g(!1)}}},
           children:(0,k.jsxs)('div',{
             children:[
-              // STEP 1: Address Details
+              // STEP 1: Address Details Form
               step===1&&(0,k.jsxs)('div',{
                 className:'space-y-6 animate-in fade-in duration-200',
                 children:[
-                  (0,k.jsxs)('div',{className:'bg-white rounded-3xl p-4 sm:p-8 border border-slate-200 shadow-xs space-y-4',children:[(0,k.jsxs)('div',{className:'flex items-center justify-between pb-3 border-b border-slate-100',children:[(0,k.jsxs)('h3',{className:'text-base font-bold font-serif text-slate-900 flex items-center gap-2',children:[(0,k.jsx)('span',{className:'w-6 h-6 rounded-full bg-[#d92906] text-white text-xs flex items-center justify-center font-mono',children:'1'}),(0,k.jsx)('span',{children:'Contact Information'})]}),(0,k.jsx)('span',{className:'text-[11px] text-slate-400',children:'All India Logistics'})]}),(0,k.jsxs)('div',{className:'space-y-4',children:[(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['Full Name / Authorized Contact ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('input',{type:'text',placeholder:'Enter your full name',value:l.name,onChange:e=>u({...l,name:e.target.value}),className:'w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'}),p.name&&(0,k.jsx)('p',{className:'text-xs text-red-500 mt-1',children:p.name})]}),(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['Email Address ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('input',{type:'email',placeholder:'name@email.com',value:l.email,onChange:e=>u({...l,email:e.target.value}),className:'w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'}),p.email&&(0,k.jsx)('p',{className:'text-xs text-red-500 mt-1',children:p.email})]}),(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['Mobile Phone (for consignment dispatch) ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('input',{type:'tel',placeholder:'10-digit number',value:l.phone,maxLength:10,onChange:e=>u({...l,phone:e.target.value.replace(/\D/g,'').slice(0,10)}),className:'w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'}),p.phone&&(0,k.jsx)('p',{className:'text-xs text-red-500 mt-1',children:p.phone})]})]})]}),
-                  (0,k.jsxs)('div',{className:'bg-white rounded-3xl p-4 sm:p-8 border border-slate-200 shadow-xs space-y-4',children:[(0,k.jsxs)('div',{className:'flex items-center justify-between pb-3 border-b border-slate-100',children:[(0,k.jsxs)('h3',{className:'text-base font-bold font-serif text-slate-900 flex items-center gap-2',children:[(0,k.jsx)('span',{className:'w-6 h-6 rounded-full bg-[#d92906] text-white text-xs flex items-center justify-center font-mono',children:'2'}),(0,k.jsx)('span',{children:'Consignment Delivery Address'})]}),(0,k.jsx)('span',{className:'text-[11px] text-slate-400',children:'Direct from Sangli Plant'})]}),(0,k.jsxs)('div',{className:'space-y-4',children:[(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['Street Address & Premise / Landmark ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('input',{type:'text',placeholder:'Commercial unit, warehouse, shop or office address...',value:l.address,onChange:e=>u({...l,address:e.target.value}),className:'w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'}),p.address&&(0,k.jsx)('p',{className:'text-xs text-red-500 mt-1',children:p.address})]}),(0,k.jsxs)('div',{className:'grid grid-cols-1 sm:grid-cols-3 gap-4',children:[(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['City / Town ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('input',{type:'text',placeholder:'e.g. Pune',value:l.city,onChange:e=>u({...l,city:e.target.value}),className:'w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'}),p.city&&(0,k.jsx)('p',{className:'text-xs text-red-500 mt-1',children:p.city})]}),(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['State ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('select',{value:l.state,onChange:e=>u({...l,state:e.target.value}),className:'w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906] bg-white',children:KO.map(e=>(0,k.jsx)('option',{value:e,children:e},e))})]}),(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['PIN Code ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('input',{type:'text',maxLength:'6',placeholder:'6 digits',value:l.pincode,onChange:e=>u({...l,pincode:e.target.value.replace(/\D/g,'').slice(0,6)}),className:'w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'}),p.pincode&&(0,k.jsx)('p',{className:'text-xs text-red-500 mt-1',children:p.pincode})]})]})]})]}),
+                  (0,k.jsxs)('div',{className:'bg-white rounded-3xl p-4 sm:p-8 border border-slate-200 shadow-xs space-y-4',children:[(0,k.jsxs)('div',{className:'flex items-center justify-between pb-3 border-b border-slate-100',children:[(0,k.jsxs)('h3',{className:'text-base font-bold font-serif text-slate-900 flex items-center gap-2',children:[(0,k.jsx)('span',{className:'w-6 h-6 rounded-full bg-[#d92906] text-white text-xs flex items-center justify-center font-mono',children:'1'}),(0,k.jsx)('span',{children:'Contact Information'})]}),(0,k.jsx)('span',{className:'text-[11px] text-slate-400',children:'All India Logistics'})]}),(0,k.jsxs)('div',{className:'space-y-4',children:[(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['Full Name / Authorized Contact ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('input',{type:'text',name:'name',placeholder:'Enter your full name',value:l.name,onChange:e=>{u({...l,name:e.target.value});if(p.name)m({...p,name:''});},className:'w-full px-3.5 py-2.5 rounded-xl border ' + (p.name?'border-red-400 ring-1 ring-red-400':'border-slate-200') + ' text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'}),p.name&&(0,k.jsx)('p',{className:'text-xs text-red-500 mt-1',children:p.name})]}),(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['Email Address ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('input',{type:'email',name:'email',placeholder:'name@email.com',value:l.email,onChange:e=>{u({...l,email:e.target.value});if(p.email)m({...p,email:''});},className:'w-full px-3.5 py-2.5 rounded-xl border ' + (p.email?'border-red-400 ring-1 ring-red-400':'border-slate-200') + ' text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'}),p.email&&(0,k.jsx)('p',{className:'text-xs text-red-500 mt-1',children:p.email})]}),(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['Mobile Phone (for consignment dispatch) ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('input',{type:'tel',name:'phone',placeholder:'10-digit number',value:l.phone,maxLength:10,onChange:e=>{u({...l,phone:e.target.value.replace(/\D/g,'').slice(0,10)});if(p.phone)m({...p,phone:''});},className:'w-full px-3.5 py-2.5 rounded-xl border ' + (p.phone?'border-red-400 ring-1 ring-red-400':'border-slate-200') + ' text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'}),p.phone&&(0,k.jsx)('p',{className:'text-xs text-red-500 mt-1',children:p.phone})]})]})]}),
+                  (0,k.jsxs)('div',{className:'bg-white rounded-3xl p-4 sm:p-8 border border-slate-200 shadow-xs space-y-4',children:[(0,k.jsxs)('div',{className:'flex items-center justify-between pb-3 border-b border-slate-100',children:[(0,k.jsxs)('h3',{className:'text-base font-bold font-serif text-slate-900 flex items-center gap-2',children:[(0,k.jsx)('span',{className:'w-6 h-6 rounded-full bg-[#d92906] text-white text-xs flex items-center justify-center font-mono',children:'2'}),(0,k.jsx)('span',{children:'Consignment Delivery Address'})]}),(0,k.jsx)('span',{className:'text-[11px] text-slate-400',children:'Direct from Sangli Plant'})]}),(0,k.jsxs)('div',{className:'space-y-4',children:[(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['Street Address & Premise / Landmark ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('input',{type:'text',name:'address',placeholder:'Commercial unit, warehouse, shop or office address...',value:l.address,onChange:e=>{u({...l,address:e.target.value});if(p.address)m({...p,address:''});},className:'w-full px-3.5 py-2.5 rounded-xl border ' + (p.address?'border-red-400 ring-1 ring-red-400':'border-slate-200') + ' text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'}),p.address&&(0,k.jsx)('p',{className:'text-xs text-red-500 mt-1',children:p.address})]}),(0,k.jsxs)('div',{className:'grid grid-cols-1 sm:grid-cols-3 gap-4',children:[(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['City / Town ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('input',{type:'text',name:'city',placeholder:'e.g. Pune',value:l.city,onChange:e=>{u({...l,city:e.target.value});if(p.city)m({...p,city:''});},className:'w-full px-3.5 py-2.5 rounded-xl border ' + (p.city?'border-red-400 ring-1 ring-red-400':'border-slate-200') + ' text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'}),p.city&&(0,k.jsx)('p',{className:'text-xs text-red-500 mt-1',children:p.city})]}),(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['State ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('select',{value:l.state,onChange:e=>u({...l,state:e.target.value}),className:'w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906] bg-white',children:KO.map(e=>(0,k.jsx)('option',{value:e,children:e},e))})]}),(0,k.jsxs)('div',{children:[(0,k.jsxs)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1',children:['PIN Code ',(0,k.jsx)('span',{className:'text-red-500',children:'*'})]}),(0,k.jsx)('input',{type:'text',name:'pincode',maxLength:'6',placeholder:'6 digits',value:l.pincode,onChange:e=>{u({...l,pincode:e.target.value.replace(/\D/g,'').slice(0,6)});if(p.pincode)m({...p,pincode:''});},className:'w-full px-3.5 py-2.5 rounded-xl border ' + (p.pincode?'border-red-400 ring-1 ring-red-400':'border-slate-200') + ' text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'}),p.pincode&&(0,k.jsx)('p',{className:'text-xs text-red-500 mt-1',children:p.pincode})]})]})]})]}),
                   (0,k.jsxs)('div',{className:'bg-white rounded-3xl p-4 sm:p-8 border border-slate-200 shadow-xs space-y-4',children:[(0,k.jsxs)('div',{className:'flex items-center justify-between pb-3 border-b border-slate-100',children:[(0,k.jsxs)('h3',{className:'text-base font-bold font-serif text-slate-900 flex items-center gap-2',children:[(0,k.jsx)(wr,{className:'w-5 h-5 text-[#d92906]'}),(0,k.jsx)('span',{children:'Business GSTIN & Tax Invoice (Optional)'})]}),(0,k.jsx)('span',{className:'text-[11px] text-emerald-700 font-bold',children:'Input Tax Credit'})]}),(0,k.jsxs)('div',{className:'grid grid-cols-1 sm:grid-cols-2 gap-4',children:[(0,k.jsxs)('div',{children:[(0,k.jsx)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1',children:'Company / Enterprise Name'}),(0,k.jsx)('input',{type:'text',placeholder:'e.g. Sai Enterprises',value:l.companyName,onChange:e=>u({...l,companyName:e.target.value}),className:'w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'})]}),(0,k.jsxs)('div',{children:[(0,k.jsx)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1',children:'GSTIN Number'}),(0,k.jsx)('input',{type:'text',maxLength:'15',placeholder:'15-digit GST Number',value:l.gstin,onChange:e=>u({...l,gstin:e.target.value.toUpperCase()}),className:'w-full uppercase font-mono px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'})]})]})]}),
                   
                   // In-page Step 1 Next Button
@@ -2186,15 +2185,10 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                       (0,k.jsxs)(T,{to:'/products',className:'inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#d92906]',children:[(0,k.jsx)(fr,{className:'w-3.5 h-3.5'}),(0,k.jsx)('span',{children:'Back to Products'})]}),
                       (0,k.jsxs)('button',{
                         type:'button',
-                        onClick:()=>{
-                          if(validateAddress()){
-                            setStep(2);
-                            window.scrollTo({top:0,behavior:'smooth'});
-                          }
-                        },
-                        className:'w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 ' + (isAddressValid?'bg-gradient-to-r from-[#d92906] to-[#b91c1c] hover:from-[#b91c1c] hover:to-[#991b1b] text-white hover:shadow-lg cursor-pointer':'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300'),
+                        onClick:handleStep1Next,
+                        className:'w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-[#d92906] to-[#b91c1c] hover:from-[#b91c1c] hover:to-[#991b1b] text-white hover:shadow-lg cursor-pointer active:scale-95',
                         children:[
-                          (0,k.jsx)('span',{children:isAddressValid?'Deliver to this Address & Continue ➔':'Fill Required Address to Continue ➔'}),
+                          (0,k.jsx)('span',{children:'Next: Payment Summary ➔'}),
                           (0,k.jsx)(mr,{className:'w-4 h-4'})
                         ]
                       })
@@ -2203,7 +2197,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                 ]
               }),
 
-              // STEP 2: Order Summary
+              // STEP 2: Payment & Order Summary Form
               step===2&&(0,k.jsxs)('div',{
                 className:'space-y-6 animate-in fade-in duration-200',
                 children:[
@@ -2215,7 +2209,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                         (0,k.jsxs)('div',{
                           className:'space-y-1',
                           children:[
-                            (0,k.jsx)('span',{className:'text-[11px] font-bold text-slate-400 uppercase tracking-wider block',children:'Deliver to:'}),
+                            (0,k.jsx)('span',{className:'text-[11px] font-bold text-slate-400 uppercase tracking-wider block',children:'Deliver to Address:'}),
                             (0,k.jsxs)('div',{
                               className:'flex items-center gap-2 pt-0.5',
                               children:[
@@ -2234,7 +2228,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                           type:'button',
                           onClick:()=>{setStep(1);window.scrollTo({top:0,behavior:'smooth'});},
                           className:'px-4 py-1.5 rounded-lg border border-slate-300 hover:border-[#d92906] text-xs font-bold text-[#d92906] hover:bg-red-50 transition-colors shrink-0 cursor-pointer',
-                          children:'Change'
+                          children:'Change Address'
                         })
                       ]
                     })
@@ -2284,39 +2278,10 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                     ]
                   }),
 
-                  // Order Summary Confirmation Box (Bharla ki clickable honar)
-                  (0,k.jsx)('div',{
-                    className:'bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-xs',
-                    children:(0,k.jsxs)('label',{
-                      className:'flex items-start gap-3 p-3.5 rounded-xl border transition-all cursor-pointer ' + (summaryConfirmed?'bg-emerald-50/80 border-emerald-300 ring-2 ring-emerald-500/20':'bg-amber-50/60 border-amber-200 hover:border-amber-300'),
-                      children:[
-                        (0,k.jsx)('input',{
-                          type:'checkbox',
-                          checked:summaryConfirmed,
-                          onChange:e=>setSummaryConfirmed(e.target.checked),
-                          className:'w-5 h-5 mt-0.5 rounded text-[#d92906] accent-[#d92906] cursor-pointer shrink-0'
-                        }),
-                        (0,k.jsxs)('div',{
-                          className:'select-none',
-                          children:[
-                            (0,k.jsx)('span',{
-                              className:'block text-xs font-bold text-slate-900',
-                              children:'I have verified my order summary & delivery address'
-                            }),
-                            (0,k.jsx)('span',{
-                              className:'block text-[11px] mt-0.5 ' + (summaryConfirmed?'text-emerald-700 font-semibold':'text-slate-500'),
-                              children:summaryConfirmed?'✓ Verified! Click "Continue to Payment" below to proceed.':'Please confirm this box to activate the Payment button.'
-                            })
-                          ]
-                        })
-                      ]
-                    })
-                  }),
-
                   (0,k.jsxs)('div',{
                     className:'bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/90 shadow-xs space-y-3',
                     children:[
-                      (0,k.jsx)('h3',{className:'text-sm font-bold text-slate-900 uppercase tracking-wider pb-2 border-b border-slate-100',children:'Price Details'}),
+                      (0,k.jsx)('h3',{className:'text-sm font-bold text-slate-900 uppercase tracking-wider pb-2 border-b border-slate-100',children:'Payment & Price Summary'}),
                       (0,k.jsxs)('div',{className:'flex justify-between text-xs text-slate-600',children:[(0,k.jsx)('span',{children:'Price ('+e.length+' items)'}),(0,k.jsxs)('span',{children:['₹',Math.round(t)]})]}),
                       (0,k.jsxs)('div',{className:'flex justify-between text-xs text-slate-600',children:[(0,k.jsx)('span',{children:'GST (Taxes)'}),(0,k.jsxs)('span',{children:['₹',Math.round(n)]})]}),
                       (0,k.jsxs)('div',{className:'flex justify-between text-xs text-slate-600',children:[(0,k.jsx)('span',{children:'Delivery Charges'}),(0,k.jsx)('span',{className:'text-emerald-600 font-bold',children:'FREE'})]}),
@@ -2324,6 +2289,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                     ]
                   }),
 
+                  // In-page Step 2 Next Button -> Advances straight to Step 3
                   (0,k.jsxs)('div',{
                     className:'pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 sm:p-6 rounded-2xl border border-slate-200/90 shadow-xs',
                     children:[
@@ -2331,19 +2297,14 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                         type:'button',
                         onClick:()=>{setStep(1);window.scrollTo({top:0,behavior:'smooth'});},
                         className:'inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#d92906] cursor-pointer',
-                        children:[(0,k.jsx)(fr,{className:'w-3.5 h-3.5'}),(0,k.jsx)('span',{children:'Edit Delivery Address'})]
+                        children:[(0,k.jsx)(fr,{className:'w-3.5 h-3.5'}),(0,k.jsx)('span',{children:'Edit Address'})]
                       }),
                       (0,k.jsxs)('button',{
                         type:'button',
-                        onClick:()=>{
-                          if(summaryConfirmed){
-                            setStep(3);
-                            window.scrollTo({top:0,behavior:'smooth'});
-                          }
-                        },
-                        className:'w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 ' + (summaryConfirmed?'bg-gradient-to-r from-[#d92906] to-[#b91c1c] hover:from-[#b91c1c] hover:to-[#991b1b] text-white hover:shadow-lg cursor-pointer':'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300'),
+                        onClick:()=>{setStep(3);window.scrollTo({top:0,behavior:'smooth'});},
+                        className:'w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-[#d92906] to-[#b91c1c] hover:from-[#b91c1c] hover:to-[#991b1b] text-white hover:shadow-lg cursor-pointer active:scale-95',
                         children:[
-                          (0,k.jsx)('span',{children:summaryConfirmed?'Continue to Payment ➔':'Confirm Summary to Continue ➔'}),
+                          (0,k.jsx)('span',{children:'Next: Payment Details ➔'}),
                           (0,k.jsx)(mr,{className:'w-4 h-4'})
                         ]
                       })
@@ -2352,7 +2313,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                 ]
               }),
 
-              // STEP 3: Payment
+              // STEP 3: Payment Details & Modes
               step===3&&(0,k.jsxs)('div',{
                 className:'space-y-6 animate-in fade-in duration-200',
                 children:[
@@ -2362,7 +2323,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                       (0,k.jsxs)('div',{
                         className:'flex items-center justify-between pb-4 border-b border-slate-100',
                         children:[
-                          (0,k.jsxs)('h3',{className:'text-base font-bold font-serif text-slate-900 flex items-center gap-2',children:[(0,k.jsx)('span',{className:'w-6 h-6 rounded-full bg-[#d92906] text-white text-xs flex items-center justify-center font-mono',children:'3'}),(0,k.jsx)('span',{children:'Payment Options'})]}),
+                          (0,k.jsxs)('h3',{className:'text-base font-bold font-serif text-slate-900 flex items-center gap-2',children:[(0,k.jsx)('span',{className:'w-6 h-6 rounded-full bg-[#d92906] text-white text-xs flex items-center justify-center font-mono',children:'3'}),(0,k.jsx)('span',{children:'Payment Details & Modes'})]}),
                           (0,k.jsx)('span',{className:'text-[11px] text-emerald-700 font-bold',children:'100% Secure Transaction'})
                         ]
                       }),
@@ -2410,12 +2371,12 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                         type:'button',
                         onClick:()=>{setStep(2);window.scrollTo({top:0,behavior:'smooth'});},
                         className:'inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-[#d92906] cursor-pointer',
-                        children:[(0,k.jsx)(fr,{className:'w-3.5 h-3.5'}),(0,k.jsx)('span',{children:'Back to Order Summary'})]
+                        children:[(0,k.jsx)(fr,{className:'w-3.5 h-3.5'}),(0,k.jsx)('span',{children:'Back to Payment Summary'})]
                       }),
                       (0,k.jsxs)('button',{
                         type:'submit',
                         disabled:h,
-                        className:'w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#d92906] to-[#b91c1c] hover:from-[#b91c1c] hover:to-[#991b1b] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50',
+                        className:'w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#d92906] to-[#b91c1c] hover:from-[#b91c1c] hover:to-[#991b1b] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 active:scale-95',
                         children:[
                           (0,k.jsx)('span',{children:h?'Processing Payment...':'Pay ₹'+Math.round(a)+' & Confirm Order'}),
                           (0,k.jsx)(mr,{className:'w-4 h-4'})
@@ -2429,7 +2390,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
           })
         }),
 
-        // Mobile Sticky Bottom Bar (Only on mobile screens, hidden on desktop sm:hidden)
+        // Mobile Sticky Bottom Bar
         (0,k.jsxs)('div',{
           className:'sm:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200 px-4 py-3 z-50 shadow-xl flex items-center justify-between gap-3',
           children:[
@@ -2447,32 +2408,25 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
             }),
             step===1?(0,k.jsx)('button',{
               type:'button',
-              onClick:()=>{
-                if(validateAddress()){
-                  setStep(2);
-                  window.scrollTo({top:0,behavior:'smooth'});
-                }
-              },
-              className:'px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ' + (isAddressValid?'bg-gradient-to-r from-[#d92906] to-[#b91c1c] text-white shadow-md active:scale-95 cursor-pointer':'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300'),
+              onClick:handleStep1Next,
+              className:'px-6 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 bg-gradient-to-r from-[#d92906] to-[#b91c1c] text-white shadow-md active:scale-95 cursor-pointer',
               children:(0,k.jsxs)(k.Fragment,{
                 children:[
-                  (0,k.jsx)('span',{children:isAddressValid?'Next ➔':'Fill Address'}),
-                  isAddressValid&&(0,k.jsx)(mr,{className:'w-3.5 h-3.5'})
+                  (0,k.jsx)('span',{children:'Next ➔'}),
+                  (0,k.jsx)(mr,{className:'w-3.5 h-3.5'})
                 ]
               })
             }):step===2?(0,k.jsx)('button',{
               type:'button',
               onClick:()=>{
-                if(summaryConfirmed){
-                  setStep(3);
-                  window.scrollTo({top:0,behavior:'smooth'});
-                }
+                setStep(3);
+                window.scrollTo({top:0,behavior:'smooth'});
               },
-              className:'px-5 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ' + (summaryConfirmed?'bg-gradient-to-r from-[#d92906] to-[#b91c1c] text-white shadow-md active:scale-95 cursor-pointer':'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300'),
+              className:'px-6 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 bg-gradient-to-r from-[#d92906] to-[#b91c1c] text-white shadow-md active:scale-95 cursor-pointer',
               children:(0,k.jsxs)(k.Fragment,{
                 children:[
-                  (0,k.jsx)('span',{children:summaryConfirmed?'Continue ➔':'Confirm Summary'}),
-                  summaryConfirmed&&(0,k.jsx)(mr,{className:'w-3.5 h-3.5'})
+                  (0,k.jsx)('span',{children:'Next: Payment ➔'}),
+                  (0,k.jsx)(mr,{className:'w-3.5 h-3.5'})
                 ]
               })
             }):(0,k.jsx)('button',{
@@ -2482,7 +2436,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                 let submitBtn = document.querySelector('form button[type="submit"]');
                 if(submitBtn) submitBtn.click();
               },
-              className:'px-5 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-[#d92906] to-[#b91c1c] text-white shadow-md active:scale-95 cursor-pointer flex items-center gap-1.5 disabled:opacity-50',
+              className:'px-6 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-[#d92906] to-[#b91c1c] text-white shadow-md active:scale-95 cursor-pointer flex items-center gap-1.5 disabled:opacity-50',
               children:(0,k.jsxs)(k.Fragment,{
                 children:[
                   (0,k.jsx)('span',{children:h?'Processing...':'Pay ₹'+Math.round(a)}),
