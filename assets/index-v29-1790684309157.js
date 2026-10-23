@@ -322,11 +322,11 @@ Total Duration: ${c-l}ms`),Y.resolve({didRun:!0,sequenceNumbersCollected:r,targe
               (0,k.jsxs)(`button`,{
                 type:`button`,
                 onClick:t=>{t.stopPropagation(),c(e,1,r?`distributor`:`retail`,!1),nav(`/checkout`)},
-                className:`w-full py-2 sm:py-2.5 px-1.5 sm:px-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all shadow-xs hover:shadow-md flex items-center justify-center gap-1 sm:gap-1.5 cursor-pointer bg-gradient-to-r from-[#d92906] to-[#b91c1c] hover:from-[#b91c1c] hover:to-[#991b1b] text-white`,
+                className:`w-full py-2 sm:py-2.5 px-1 sm:px-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all shadow-xs hover:shadow-md flex items-center justify-center gap-1 sm:gap-1.5 cursor-pointer bg-gradient-to-r from-[#d92906] to-[#b91c1c] hover:from-[#b91c1c] hover:to-[#991b1b] text-white`,
                 title:`Buy Now`,
                 children:[
-                  (0,k.jsx)(`span`,{className:`truncate`,children:`Buy Now`}),
-                  (0,k.jsx)(mr,{className:`w-3.5 h-3.5 shrink-0`})
+                  (0,k.jsx)(`span`,{className:`whitespace-nowrap font-bold`,children:`Buy Now`}),
+                  (0,k.jsx)(mr,{className:`w-3.5 h-3.5 shrink-0 hidden sm:inline-block`})
                 ]
               })
             ]
