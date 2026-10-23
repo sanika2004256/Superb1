@@ -2327,20 +2327,6 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                   }),
 
                   (0,k.jsxs)('div',{
-                    className:'bg-white rounded-3xl p-5 sm:p-8 border border-slate-200 shadow-xs space-y-4',
-                    children:[
-                      (0,k.jsxs)('div',{className:'flex items-center justify-between pb-3 border-b border-slate-100',children:[(0,k.jsxs)('h3',{className:'text-base font-bold font-serif text-slate-900 flex items-center gap-2',children:[(0,k.jsx)(wr,{className:'w-5 h-5 text-[#d92906]'}),(0,k.jsx)('span',{children:'Business GSTIN & Tax Invoice (Optional)'})]}),(0,k.jsx)('span',{className:'text-[11px] text-emerald-700 font-bold',children:'Input Tax Credit'})]}),
-                      (0,k.jsxs)('div',{
-                        className:'grid grid-cols-1 sm:grid-cols-2 gap-4',
-                        children:[
-                          (0,k.jsxs)('div',{children:[(0,k.jsx)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1',children:'Company / Enterprise Name'}),(0,k.jsx)('input',{type:'text',placeholder:'e.g. Sai Enterprises',value:l.companyName,onChange:e=>u({...l,companyName:e.target.value}),className:'w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'})]}),
-                          (0,k.jsxs)('div',{children:[(0,k.jsx)('label',{className:'block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1',children:'GSTIN Number'}),(0,k.jsx)('input',{type:'text',maxLength:'15',placeholder:'15-digit GST Number',value:l.gstin,onChange:e=>u({...l,gstin:e.target.value.toUpperCase()}),className:'w-full uppercase font-mono px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#d92906]'})]})
-                        ]
-                      })
-                    ]
-                  }),
-
-                  (0,k.jsxs)('div',{
                     className:'pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 sm:p-6 rounded-2xl border border-slate-200/90 shadow-xs',
                     children:[
                       (0,k.jsxs)('button',{
