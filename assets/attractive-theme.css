@@ -1866,3 +1866,29 @@ footer a:hover {
     padding-bottom: 72px !important;
   }
 }
+
+
+/* ==========================================================================
+   CHECKOUT & MULTI-STEP FLOW BEAUTIFICATION & ALIGNMENT
+   ========================================================================== */
+.checkout-step-done {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.25) !important;
+}
+
+.checkout-step-active {
+  background-color: #d92906 !important;
+  color: #ffffff !important;
+  border-color: #d92906 !important;
+  box-shadow: 0 0 0 4px rgba(217, 41, 6, 0.15), 0 2px 4px rgba(217, 41, 6, 0.3) !important;
+}
+
+.checkout-step-line-done {
+  background-color: #10b981 !important;
+}
+
+.checkout-step-line-pending {
+  background-color: #e2e8f0 !important;
+}
