@@ -102,8 +102,7 @@ header nav a[href*="login"]:hover {
 }
 
 /* "Enquire Now" Primary CTA in Header */
-header button.bg-gradient-to-r,
-header button[type="button"]:has(svg):has(span) {
+header button.bg-gradient-to-r {
   background: var(--primary-gradient) !important;
   color: #ffffff !important;
   border-radius: 9999px !important;
@@ -113,8 +112,7 @@ header button[type="button"]:has(svg):has(span) {
   position: relative !important;
   overflow: hidden !important;
 }
-header button.bg-gradient-to-r:hover,
-header button[type="button"]:has(svg):has(span):hover {
+header button.bg-gradient-to-r:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 8px 24px rgba(220, 38, 38, 0.45) !important;
   filter: brightness(1.08) !important;
@@ -1746,8 +1744,8 @@ footer a:hover {
     padding-left: 12px !important;
     padding-right: 12px !important;
   }
-  header nav button,
-  header nav a {
+  header nav button:not(.hidden):not(.sm\:inline-flex),
+  header nav a:not(.hidden) {
     min-height: 40px !important;
     display: inline-flex !important;
     align-items: center !important;
@@ -1891,4 +1889,58 @@ footer a:hover {
 
 .checkout-step-line-pending {
   background-color: #e2e8f0 !important;
+}
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   HEADER NAVBAR ICONS CLEANUP & OVERFLOW PREVENTION
+   ========================================================================== */
+/* Specifically hide the Marathi translation button across all screens */
+header nav button.hidden:not([class*="sm:inline-flex"]) {
+  display: none !important;
+}
+
+/* Mobile: screens < 640px (phones) - hide Enquire Now button */
+@media (max-width: 639px) {
+  header nav button.sm\:inline-flex,
+  header nav button[class*="sm:inline-flex"] {
+    display: none !important;
+  }
+}
+
+/* Tablet & Desktop: screens >= 640px - show Enquire Now button */
+@media (min-width: 640px) {
+  header nav button.sm\:inline-flex,
+  header nav button[class*="sm:inline-flex"] {
+    display: inline-flex !important;
+  }
+}
+
+/* Clean Cart and Icon buttons */
+header nav button[title*="Shopping Cart"],
+header nav button[title*="Cart"] {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0.75rem !important;
+  color: #334155 !important;
+  overflow: visible !important;
+}
+header nav button[title*="Shopping Cart"]:hover,
+header nav button[title*="Cart"]:hover {
+  background-color: #f1f5f9 !important;
+  color: #d92906 !important;
+}
+header nav button[title*="Shopping Cart"] span,
+header nav button[title*="Cart"] span {
+  background-color: #d92906 !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
 }
