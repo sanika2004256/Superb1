@@ -2086,7 +2086,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
   };
 
   return(0,k.jsx)('div',{
-    className:'pt-24 pb-32 sm:pb-24 bg-slate-50 min-h-screen',
+    className:'pt-24 pb-20 bg-slate-50 min-h-screen',
     children:(0,k.jsxs)('div',{
       className:'max-w-3xl mx-auto px-4 sm:px-6 lg:px-8',
       children:[
@@ -2241,7 +2241,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                         },
                         className:'w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-[#d92906] to-[#b91c1c] hover:from-[#b91c1c] hover:to-[#991b1b] text-white hover:shadow-lg cursor-pointer active:scale-95',
                         children:[
-                          (0,k.jsx)('span',{children:'Next: Delivery Address ➔'}),
+                          (0,k.jsx)('span',{children:'Next: Delivery Address'}),
                           (0,k.jsx)(mr,{className:'w-4 h-4'})
                         ]
                       })
@@ -2325,7 +2325,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                         },
                         className:'w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-[#d92906] to-[#b91c1c] hover:from-[#b91c1c] hover:to-[#991b1b] text-white hover:shadow-lg cursor-pointer active:scale-95',
                         children:[
-                          (0,k.jsx)('span',{children:'Next: Payment ➔'}),
+                          (0,k.jsx)('span',{children:'Next: Payment'}),
                           (0,k.jsx)(mr,{className:'w-4 h-4'})
                         ]
                       })
@@ -2504,70 +2504,6 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
               })
             ]
           })
-        }),
-
-        // Mobile Sticky Bottom Bar (Only on mobile screens, hidden on desktop sm:hidden)
-        (0,k.jsxs)('div',{
-          className:'sm:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-slate-200 px-4 py-3 z-50 shadow-xl flex items-center justify-between gap-3',
-          children:[
-            (0,k.jsxs)('div',{
-              children:[
-                (0,k.jsxs)('span',{
-                  className:'text-[11px] font-bold text-slate-400 uppercase tracking-wider block',
-                  children:[step===1?'Step 1/3: Contact':step===2?'Step 2/3: Address':'Step 3/3: Payment']
-                }),
-                (0,k.jsxs)('span',{
-                  className:'text-base font-extrabold text-[#d92906]',
-                  children:['₹',Math.round(a)]
-                })
-              ]
-            }),
-            step===1?(0,k.jsx)('button',{
-              type:'button',
-              onClick:()=>{
-                if(validateContact()){
-                  setStep(2);
-                  window.scrollTo({top:0,behavior:'smooth'});
-                }
-              },
-              className:'px-6 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 bg-gradient-to-r from-[#d92906] to-[#b91c1c] text-white shadow-md active:scale-95 cursor-pointer',
-              children:(0,k.jsxs)(k.Fragment,{
-                children:[
-                  (0,k.jsx)('span',{children:'Next ➔'}),
-                  (0,k.jsx)(mr,{className:'w-3.5 h-3.5'})
-                ]
-              })
-            }):step===2?(0,k.jsx)('button',{
-              type:'button',
-              onClick:()=>{
-                if(validateAddress()){
-                  setStep(3);
-                  window.scrollTo({top:0,behavior:'smooth'});
-                }
-              },
-              className:'px-6 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 bg-gradient-to-r from-[#d92906] to-[#b91c1c] text-white shadow-md active:scale-95 cursor-pointer',
-              children:(0,k.jsxs)(k.Fragment,{
-                children:[
-                  (0,k.jsx)('span',{children:'Next: Payment ➔'}),
-                  (0,k.jsx)(mr,{className:'w-3.5 h-3.5'})
-                ]
-              })
-            }):(0,k.jsx)('button',{
-              type:'button',
-              disabled:h,
-              onClick:()=>{
-                let submitBtn = document.querySelector('form button[type="submit"]');
-                if(submitBtn) submitBtn.click();
-              },
-              className:'px-6 py-2.5 rounded-xl text-xs font-bold bg-gradient-to-r from-[#d92906] to-[#b91c1c] text-white shadow-md active:scale-95 cursor-pointer flex items-center gap-1.5 disabled:opacity-50',
-              children:(0,k.jsxs)(k.Fragment,{
-                children:[
-                  (0,k.jsx)('span',{children:h?'Processing...':'Pay ₹'+Math.round(a)}),
-                  (0,k.jsx)(mr,{className:'w-3.5 h-3.5'})
-                ]
-              })
-            })
-          ]
         })
       ]
     })
