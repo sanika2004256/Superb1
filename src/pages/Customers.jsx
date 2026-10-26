@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
-import { FiUsers, FiMail, FiCalendar, FiCheckCircle, FiKey } from 'react-icons/fi';
+import { FiUsers, FiMail, FiCalendar, FiCheckCircle, FiPhone } from 'react-icons/fi';
 
 export default function Customers() {
   const [customers, setCustomers] = useState([]);
@@ -44,17 +44,7 @@ export default function Customers() {
             <FiUsers className="text-primary" />
             Registered Customers
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1 font-medium">Manage and view all registered users and their credentials</p>
-        </div>
-      </div>
-
-      {/* Security Warning */}
-      <div className="bg-amber-50/80 border-l-4 border-amber-400 p-3.5 sm:p-4 rounded-r-2xl shadow-sm">
-        <div className="flex items-start">
-          <FiKey className="text-amber-600 mr-2.5 sm:mr-3 mt-0.5 shrink-0" size={18} />
-          <p className="text-xs sm:text-sm text-amber-900 leading-relaxed">
-            <strong>Security Notice:</strong> Customer passwords are shown here for administrative testing purposes.
-          </p>
+          <p className="text-xs sm:text-sm text-slate-500 mt-1 font-medium">Manage and view all registered users and their profile details</p>
         </div>
       </div>
 
@@ -66,7 +56,7 @@ export default function Customers() {
               <tr className="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500">
                 <th className="px-6 py-4 font-semibold">Name</th>
                 <th className="px-6 py-4 font-semibold">Email</th>
-                <th className="px-6 py-4 font-semibold">Password</th>
+                <th className="px-6 py-4 font-semibold">Phone</th>
                 <th className="px-6 py-4 font-semibold">Role</th>
                 <th className="px-6 py-4 font-semibold">Status</th>
                 <th className="px-6 py-4 font-semibold">Joined At</th>
@@ -88,8 +78,8 @@ export default function Customers() {
                       <FiMail className="text-slate-400" />
                       {customer.email}
                     </td>
-                    <td className="px-6 py-4 text-slate-800 font-mono text-xs bg-slate-50 border border-slate-100 rounded-md px-2 py-1 m-2 inline-block">
-                      {customer.password || '******'}
+                    <td className="px-6 py-4 text-slate-600 text-sm font-medium">
+                      {customer.phone || '—'}
                     </td>
                     <td className="px-6 py-4">
                       <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-semibold capitalize">
@@ -146,11 +136,9 @@ export default function Customers() {
                 </div>
 
                 <div className="flex items-center justify-between pt-1">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Pass:</span>
-                    <span className="font-mono text-xs bg-slate-100 px-2 py-0.5 rounded border border-slate-200 text-slate-800">
-                      {customer.password || '******'}
-                    </span>
+                  <div className="text-[11px] text-slate-500 flex items-center gap-1">
+                    <FiPhone size={11} className="text-slate-400" />
+                    <span>{customer.phone || 'No phone'}</span>
                   </div>
                   <div className="text-[10px] text-slate-400 flex items-center gap-1">
                     <FiCalendar size={11} />

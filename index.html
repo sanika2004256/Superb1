@@ -80,19 +80,6 @@
 <body class="overflow-x-hidden w-full relative bg-slate-50 text-slate-800 antialiased font-sans">
   <div id="root"></div>
 
-  <!-- Secret Admin Panel Access -->
-  <script>
-    // Keyboard Shortcut: Ctrl + Shift + A
-    document.addEventListener('keydown', (e) => {
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
-        e.preventDefault();
-        window.open('/admin', '_blank');
-      }
-    });
-  </script>
-  <!-- Secret invisible button at bottom right (double click) -->
-  <div style="position:fixed; bottom:0; right:0; width:50px; height:50px; cursor:default; z-index:9999;"
-    ondblclick="window.open('/admin', '_blank')" title=""></div>
 
 
   <!-- Hidden Google Translate -->

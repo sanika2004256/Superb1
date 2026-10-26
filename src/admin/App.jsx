@@ -29,8 +29,7 @@ export default function App() {
 
     try {
       const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-        const isDevBypass = window.location.search.includes('dev_admin=true');
-        setUser(currentUser || (isDevBypass ? { email: 'admin@superbmegacorp.com' } : null));
+        setUser(currentUser);
         setLoading(false);
       });
       return () => unsubscribe();
