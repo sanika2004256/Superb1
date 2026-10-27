@@ -41,6 +41,9 @@ AddDefaultCharset UTF-8
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
+  # Route /admin and /admin/* URLs to admin/index.html
+  RewriteRule ^admin(/.*)?$ admin/index.html [L]
+
   # Route all other URLs to index.html for client-side routing
   RewriteRule ^ index.html [L]
 </IfModule>

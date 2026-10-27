@@ -41,18 +41,21 @@ export default function Products() {
   };
 
   const importLegacyData = async () => {
-    if (!window.confirm("This will import all 92 original products from your public website into Firebase. Continue?")) return;
+    if (!window.confirm(`This will import ${legacyProducts.length} original products from your catalog into Firebase. Continue?`)) return;
     setImporting(true);
     try {
       let count = 0;
       for (const p of legacyProducts) {
+        const cleanMrp = typeof p.mrp === 'number' ? p.mrp : parseInt((p.price || "0").toString().replace(/\D/g, '') || 0);
         await addDoc(collection(db, 'products'), {
           name: p.name,
           category: p.categoryName || p.category || 'General',
-          price: "₹" + p.mrp,
+          price: "₹" + cleanMrp,
+          mrp: cleanMrp,
           status: 'active',
           description: p.packing || '',
           imageUrl: p.image || p.imageFront || '',
+          boxImage: p.image || p.imageFront || '',
           sku: p.sku || ''
         });
         count++;
@@ -113,15 +116,23 @@ export default function Products() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
+      const cleanMrp = parseInt((formData.price || '0').toString().replace(/\D/g, '') || 0);
+      const productPayload = {
+        ...formData,
+        mrp: cleanMrp,
+        boxImage: formData.boxImage || formData.imageUrl || '',
+        imageUrl: formData.imageUrl || formData.boxImage || ''
+      };
+
       if (currentProduct) {
         await updateDoc(doc(db, 'products', currentProduct.id), {
-          ...formData,
+          ...productPayload,
           updatedAt: serverTimestamp()
         });
         alert('Product updated successfully');
       } else {
         await addDoc(productsRef, {
-          ...formData,
+          ...productPayload,
           createdAt: serverTimestamp(),
           updatedAt: serverTimestamp()
         });

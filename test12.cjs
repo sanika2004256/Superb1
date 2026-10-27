@@ -1,1 +1,0 @@
-const fs = require('fs'); const content = fs.readFileSync('products-dump.html', 'utf8'); const regex = /<[^>]*class=\"[^\"]*bg-white[^\"]*\"[^>]*>/g; let match; while ((match = regex.exec(content)) !== null) { console.log(match[0].substring(0, 150)); }

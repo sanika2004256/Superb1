@@ -1,20 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig';
 import AdminLayout from '../components/AdminLayout';
-import Dashboard from '../pages/Dashboard';
-import Login from '../pages/Login';
-import Products from '../pages/Products';
-import Categories from '../pages/Categories';
-import Franchise from '../pages/Franchise';
-import Gallery from '../pages/Gallery';
-import Blogs from '../pages/Blogs';
-import Enquiries from '../pages/Enquiries';
-import Messages from '../pages/Messages';
-import Settings from '../pages/Settings';
-import Orders from '../pages/Orders';
-import Customers from '../pages/Customers';
+
+const Dashboard = lazy(() => import('../pages/Dashboard'));
+const Login = lazy(() => import('../pages/Login'));
+const Products = lazy(() => import('../pages/Products'));
+const Categories = lazy(() => import('../pages/Categories'));
+const Franchise = lazy(() => import('../pages/Franchise'));
+const Gallery = lazy(() => import('../pages/Gallery'));
+const Blogs = lazy(() => import('../pages/Blogs'));
+const Enquiries = lazy(() => import('../pages/Enquiries'));
+const Messages = lazy(() => import('../pages/Messages'));
+const Settings = lazy(() => import('../pages/Settings'));
+const Orders = lazy(() => import('../pages/Orders'));
+const Customers = lazy(() => import('../pages/Customers'));
+
+const PageLoader = () => (
+  <div className="min-h-[300px] flex items-center justify-center">
+    <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -40,35 +47,37 @@ export default function App() {
   }, []);
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center bg-slate-50">
-      <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-    </div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
-  const isFirebaseConfigured = import.meta.env.VITE_FIREBASE_API_KEY;
-
   return (
-    <Routes>
-      <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />      
-      {/* Protected Admin Routes */}
-      <Route path="/" element={user ? <AdminLayout /> : <Navigate to="/login" />}>
-        <Route index element={<Navigate to="/dashboard" />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="customers" element={<Customers />} />
-        <Route path="orders" element={<Orders />} />
-        <Route path="products" element={<Products />} />
-        <Route path="categories" element={<Categories />} />
-        <Route path="franchise" element={<Franchise />} />
-        <Route path="gallery" element={<Gallery />} />
-        <Route path="blogs" element={<Blogs />} />
-        <Route path="enquiries" element={<Enquiries />} />
-        <Route path="messages" element={<Messages />} />
-        <Route path="settings" element={<Settings />} />
-      </Route>
-      
-      {/* Fallback */}
-      <Route path="*" element={<Navigate to="/dashboard" />} />
-    </Routes>
+    <Suspense fallback={<PageLoader />}>
+      <Routes>
+        <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />      
+        {/* Protected Admin Routes */}
+        <Route path="/" element={user ? <AdminLayout /> : <Navigate to="/login" />}>
+          <Route index element={<Navigate to="/dashboard" />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="customers" element={<Customers />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="products" element={<Products />} />
+          <Route path="categories" element={<Categories />} />
+          <Route path="franchise" element={<Franchise />} />
+          <Route path="gallery" element={<Gallery />} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="enquiries" element={<Enquiries />} />
+          <Route path="messages" element={<Messages />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+        
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/dashboard" />} />
+      </Routes>
+    </Suspense>
   );
 }
 

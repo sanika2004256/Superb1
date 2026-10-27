@@ -1,1 +1,0 @@
-const fs = require('fs'); const content = fs.readFileSync('assets/index-v29-1790684309157.js', 'utf8'); let idx = 0; while((idx = content.indexOf('type:\	ext\', idx)) !== -1) { console.log(content.substring(idx - 50, idx + 100)); idx += 5; }

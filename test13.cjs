@@ -1,1 +1,0 @@
-const fs = require('fs'); const content = fs.readFileSync('assets/index-v29-1790684309157.js', 'utf8'); const regex = /path:\\/products\/g; const match = regex.exec(content); if(match) console.log(content.substring(match.index - 50, match.index + 150)); else console.log('Not found');

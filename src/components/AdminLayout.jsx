@@ -27,9 +27,12 @@ export default function AdminLayout() {
     { name: 'Customers', path: '/customers', icon: <FiUsers /> },
     { name: 'Customer Orders', path: '/orders', icon: <FiShoppingCart /> },
     { name: 'Products', path: '/products', icon: <FiBox /> },
+    { name: 'Categories', path: '/categories', icon: <FiList /> },
     { name: 'Franchise', path: '/franchise', icon: <FiUsers /> },
     { name: 'Gallery', path: '/gallery', icon: <FiImage /> },
+    { name: 'Blogs', path: '/blogs', icon: <FiFileText /> },
     { name: 'Enquiries', path: '/enquiries', icon: <FiMessageSquare /> },
+    { name: 'Messages', path: '/messages', icon: <FiMessageSquare /> },
     { name: 'Settings', path: '/settings', icon: <FiSettings /> },
   ];
 

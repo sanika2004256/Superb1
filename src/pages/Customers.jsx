@@ -13,12 +13,19 @@ export default function Customers() {
 
   const fetchCustomers = async () => {
     try {
-      const q = query(collection(db, 'customers'), orderBy('createdAt', 'desc'));
-      const querySnapshot = await getDocs(q);
+      let querySnapshot;
+      try {
+        const q = query(collection(db, 'customers'), orderBy('createdAt', 'desc'));
+        querySnapshot = await getDocs(q);
+      } catch (err) {
+        // Fallback without server-side orderBy if composite index or createdAt is missing
+        querySnapshot = await getDocs(collection(db, 'customers'));
+      }
       const customersData = [];
       querySnapshot.forEach((doc) => {
         customersData.push({ id: doc.id, ...doc.data() });
       });
+      customersData.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
       setCustomers(customersData);
     } catch (error) {
       console.error("Error fetching customers: ", error);

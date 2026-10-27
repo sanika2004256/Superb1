@@ -1,1 +1,0 @@
-const fs = require('fs'); const content = fs.readFileSync('assets/index-v29-1790684309157.js', 'utf8'); const idx = content.indexOf('Distributor Mode:'); console.log(content.substring(idx - 100, idx + 400));

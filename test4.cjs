@@ -1,1 +1,0 @@
-const fs = require('fs'); const content = fs.readFileSync('assets/index-v29-1790684309157.js', 'utf8'); const searchIdx = content.indexOf('Search tea, premixes'); console.log(content.substring(searchIdx - 200, searchIdx + 2000));
