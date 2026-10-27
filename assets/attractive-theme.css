@@ -1944,3 +1944,16 @@ header nav button[title*="Cart"] span {
   color: #ffffff !important;
   border-radius: 9999px !important;
 }
+
+
+/* Hide 3 highlight pillars on mobile only */
+.about-pillars-grid {
+  display: none !important;
+}
+@media (min-width: 640px) {
+  .about-pillars-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
