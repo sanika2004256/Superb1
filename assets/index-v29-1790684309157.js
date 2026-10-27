@@ -994,7 +994,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                 children: "Partner with Superb MegaCorp's premier Amruttulya tea franchise. Serve authentic Pune Amruttulya chai, artisanal snacks, and commercial beverages with rapid break-even, low investment, and 100% turn-key setup."
               }),
               (0,k.jsxs)("div", {
-                className: "flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-9 sm:mb-12",
+                className: "flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-2 sm:mb-4",
                 children: [
                   (0,k.jsxs)("button", {
                     type: "button",
@@ -1016,61 +1016,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                   })
                 ]
               }),
-              /* 4 LUXURY KPI METRIC CARDS */
-              (0,k.jsxs)("div", {
-                className: "franchise-kpi-grid",
-                children: [
-                  (0,k.jsxs)("div", {
-                    className: "franchise-kpi-card",
-                    children: [
-                      (0,k.jsx)("div", {
-                        className: "w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 shadow-xs",
-                        children: (0,k.jsxs)("svg",{className:"w-5 h-5 text-emerald-600",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",children:[(0,k.jsx)("line",{x1:"19",y1:"5",x2:"5",y2:"19"}),(0,k.jsx)("circle",{cx:"6.5",cy:"6.5",r:"2.5"}),(0,k.jsx)("circle",{cx:"17.5",cy:"17.5",r:"2.5"})]})
-                      }),
-                      (0,k.jsx)("span", { className: "text-2xl sm:text-3xl font-extrabold font-serif text-slate-900 block", children: "60%–70%" }),
-                      (0,k.jsx)("span", { className: "text-xs font-bold text-slate-700 block mt-1", children: "Gross Operating Margin" }),
-                      (0,k.jsx)("span", { className: "text-[11px] text-slate-500 block mt-0.5", children: "High Daily Cash Volume" })
-                    ]
-                  }),
-                  (0,k.jsxs)("div", {
-                    className: "franchise-kpi-card",
-                    children: [
-                      (0,k.jsx)("div", {
-                        className: "w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3 shadow-xs",
-                        children: (0,k.jsxs)("svg",{className:"w-5 h-5 text-amber-600",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",children:[(0,k.jsx)("circle",{cx:"12",cy:"12",r:"10"}),(0,k.jsx)("polyline",{points:"12 6 12 12 16 14"})]})
-                      }),
-                      (0,k.jsx)("span", { className: "text-2xl sm:text-3xl font-extrabold font-serif text-slate-900 block", children: "4–6 Mos" }),
-                      (0,k.jsx)("span", { className: "text-xs font-bold text-slate-700 block mt-1", children: "Capital Break-Even" }),
-                      (0,k.jsx)("span", { className: "text-[11px] text-slate-500 block mt-0.5", children: "Fast Return on Capital" })
-                    ]
-                  }),
-                  (0,k.jsxs)("div", {
-                    className: "franchise-kpi-card",
-                    children: [
-                      (0,k.jsx)("div", {
-                        className: "w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3 shadow-xs",
-                        children: (0,k.jsxs)("svg",{className:"w-5 h-5 text-blue-600",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",children:[(0,k.jsx)("path",{d:"m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"}),(0,k.jsx)("path",{d:"M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"}),(0,k.jsx)("path",{d:"M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"}),(0,k.jsx)("path",{d:"M2 7h20"})]})
-                      }),
-                      (0,k.jsx)("span", { className: "text-2xl sm:text-3xl font-extrabold font-serif text-slate-900 block", children: "100–250" }),
-                      (0,k.jsx)("span", { className: "text-xs font-bold text-slate-700 block mt-1", children: "Sq. Ft. Minimal Space" }),
-                      (0,k.jsx)("span", { className: "text-[11px] text-slate-500 block mt-0.5", children: "Low Rent, Flexible Kiosk" })
-                    ]
-                  }),
-                  (0,k.jsxs)("div", {
-                    className: "franchise-kpi-card",
-                    children: [
-                      (0,k.jsx)("div", {
-                        className: "w-10 h-10 rounded-xl bg-red-50 text-[#d92906] flex items-center justify-center mb-3 shadow-xs",
-                        children: (0,k.jsx)("svg",{className:"w-5 h-5 text-[#d92906]",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",children:(0,k.jsx)("polygon",{points:"13 2 3 14 12 14 11 22 21 10 12 10 13 2"})})
-                      }),
-                      (0,k.jsx)("span", { className: "text-2xl sm:text-3xl font-extrabold font-serif text-slate-900 block", children: "15 Sec" }),
-                      (0,k.jsx)("span", { className: "text-xs font-bold text-slate-700 block mt-1", children: "Per Cup Standard Time" }),
-                      (0,k.jsx)("span", { className: "text-[11px] text-slate-500 block mt-0.5", children: "Zero Master Chef Dependency" })
-                    ]
-                  })
                 ]
-              })
-            ]
           })
         ]
       }),
@@ -1207,6 +1153,64 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                 ]
               })
             ]
+          }),
+
+          /* 4 LUXURY KPI METRIC CARDS */
+          (0,k.jsx)("section", {
+            className: "pt-2 pb-2",
+            children: (0,k.jsxs)("div", {
+                className: "franchise-kpi-grid",
+                children: [
+                  (0,k.jsxs)("div", {
+                    className: "franchise-kpi-card",
+                    children: [
+                      (0,k.jsx)("div", {
+                        className: "w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3 shadow-xs",
+                        children: (0,k.jsxs)("svg",{className:"w-5 h-5 text-emerald-600",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",children:[(0,k.jsx)("line",{x1:"19",y1:"5",x2:"5",y2:"19"}),(0,k.jsx)("circle",{cx:"6.5",cy:"6.5",r:"2.5"}),(0,k.jsx)("circle",{cx:"17.5",cy:"17.5",r:"2.5"})]})
+                      }),
+                      (0,k.jsx)("span", { className: "text-2xl sm:text-3xl font-extrabold font-serif text-slate-900 block", children: "60%–70%" }),
+                      (0,k.jsx)("span", { className: "text-xs font-bold text-slate-700 block mt-1", children: "Gross Operating Margin" }),
+                      (0,k.jsx)("span", { className: "text-[11px] text-slate-500 block mt-0.5", children: "High Daily Cash Volume" })
+                    ]
+                  }),
+                  (0,k.jsxs)("div", {
+                    className: "franchise-kpi-card",
+                    children: [
+                      (0,k.jsx)("div", {
+                        className: "w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-3 shadow-xs",
+                        children: (0,k.jsxs)("svg",{className:"w-5 h-5 text-amber-600",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",children:[(0,k.jsx)("circle",{cx:"12",cy:"12",r:"10"}),(0,k.jsx)("polyline",{points:"12 6 12 12 16 14"})]})
+                      }),
+                      (0,k.jsx)("span", { className: "text-2xl sm:text-3xl font-extrabold font-serif text-slate-900 block", children: "4–6 Mos" }),
+                      (0,k.jsx)("span", { className: "text-xs font-bold text-slate-700 block mt-1", children: "Capital Break-Even" }),
+                      (0,k.jsx)("span", { className: "text-[11px] text-slate-500 block mt-0.5", children: "Fast Return on Capital" })
+                    ]
+                  }),
+                  (0,k.jsxs)("div", {
+                    className: "franchise-kpi-card",
+                    children: [
+                      (0,k.jsx)("div", {
+                        className: "w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-3 shadow-xs",
+                        children: (0,k.jsxs)("svg",{className:"w-5 h-5 text-blue-600",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",children:[(0,k.jsx)("path",{d:"m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"}),(0,k.jsx)("path",{d:"M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"}),(0,k.jsx)("path",{d:"M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"}),(0,k.jsx)("path",{d:"M2 7h20"})]})
+                      }),
+                      (0,k.jsx)("span", { className: "text-2xl sm:text-3xl font-extrabold font-serif text-slate-900 block", children: "100–250" }),
+                      (0,k.jsx)("span", { className: "text-xs font-bold text-slate-700 block mt-1", children: "Sq. Ft. Minimal Space" }),
+                      (0,k.jsx)("span", { className: "text-[11px] text-slate-500 block mt-0.5", children: "Low Rent, Flexible Kiosk" })
+                    ]
+                  }),
+                  (0,k.jsxs)("div", {
+                    className: "franchise-kpi-card",
+                    children: [
+                      (0,k.jsx)("div", {
+                        className: "w-10 h-10 rounded-xl bg-red-50 text-[#d92906] flex items-center justify-center mb-3 shadow-xs",
+                        children: (0,k.jsx)("svg",{className:"w-5 h-5 text-[#d92906]",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",children:(0,k.jsx)("polygon",{points:"13 2 3 14 12 14 11 22 21 10 12 10 13 2"})})
+                      }),
+                      (0,k.jsx)("span", { className: "text-2xl sm:text-3xl font-extrabold font-serif text-slate-900 block", children: "15 Sec" }),
+                      (0,k.jsx)("span", { className: "text-xs font-bold text-slate-700 block mt-1", children: "Per Cup Standard Time" }),
+                      (0,k.jsx)("span", { className: "text-[11px] text-slate-500 block mt-0.5", children: "Zero Master Chef Dependency" })
+                    ]
+                  })
+                ]
+              })
           }),
 
           /* SECTION 2: 4 CORE FRANCHISE ADVANTAGES */
