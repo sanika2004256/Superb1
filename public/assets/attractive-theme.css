@@ -2046,5 +2046,120 @@ div[class*="modal-enquiry-card"]::-webkit-scrollbar,
   }
 }
 
+/* ==========================================================================
+   FRANCHISE PAGE MOBILE 2-COLUMN COMPACT COMPONENTS (MOBILE VIEW ONLY)
+   ========================================================================== */
+@media (max-width: 639px) {
+  /* Section 1: Turn-Key Kiosk / Commercial Equipment (1 row 2 components) */
+  .franchise-equipment-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.5rem !important; /* 8px */
+    margin-top: 0 !important;
+  }
+  .franchise-equipment-card {
+    padding: 0.625rem 0.5rem !important;
+    border-radius: 0.75rem !important;
+    gap: 0.375rem !important;
+    height: 100% !important;
+    align-items: flex-start !important;
+    box-sizing: border-box !important;
+  }
+  .franchise-equipment-card svg {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+    margin-top: 0.125rem !important;
+    flex-shrink: 0 !important;
+  }
+  .franchise-equipment-card h4 {
+    font-size: 0.6875rem !important; /* 11px */
+    line-height: 0.95rem !important;
+    margin-bottom: 0.15rem !important;
+    font-weight: 700 !important;
+  }
+  .franchise-equipment-card p {
+    font-size: 0.5625rem !important; /* 9px */
+    line-height: 0.75rem !important;
+    color: #64748b !important;
+  }
+
+  /* Section 2: Franchise Advantages (1 row 2 components) */
+  .franchise-advantages-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.625rem !important; /* 10px */
+  }
+  .franchise-advantage-card {
+    padding: 0.75rem 0.625rem !important;
+    border-radius: 0.875rem !important;
+    min-height: auto !important;
+    box-sizing: border-box !important;
+  }
+  .franchise-advantage-card .w-10.h-10 {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    border-radius: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .franchise-advantage-card svg {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+  .franchise-advantage-card h4 {
+    font-size: 0.75rem !important; /* 12px */
+    line-height: 1.1rem !important;
+    margin-bottom: 0.25rem !important;
+    font-weight: 700 !important;
+  }
+  .franchise-advantage-card p {
+    font-size: 0.625rem !important; /* 10px */
+    line-height: 0.875rem !important;
+    color: #64748b !important;
+  }
+  .franchise-advantage-card div[class*="mt-4 pt-3"] {
+    margin-top: 0.5rem !important;
+    padding-top: 0.375rem !important;
+    font-size: 0.5625rem !important; /* 9px */
+  }
+
+  /* Section 3: 4 Simple Steps (1 row 2 components) */
+  .franchise-steps-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.625rem !important; /* 10px */
+  }
+  .franchise-step-card {
+    padding: 0.75rem 0.625rem !important;
+    border-radius: 0.875rem !important;
+    min-height: auto !important;
+    box-sizing: border-box !important;
+  }
+  .franchise-step-card span[class*="text-2xl"],
+  .franchise-step-card span[class*="text-3xl"],
+  .franchise-step-card span[class*="font-mono"] {
+    font-size: 1.25rem !important;
+    line-height: 1.25rem !important;
+    margin-bottom: 0.25rem !important;
+    display: block !important;
+  }
+  .franchise-step-card h4 {
+    font-size: 0.75rem !important; /* 12px */
+    line-height: 1.1rem !important;
+    margin-bottom: 0.25rem !important;
+    font-weight: 700 !important;
+  }
+  .franchise-step-card p {
+    font-size: 0.625rem !important; /* 10px */
+    line-height: 0.875rem !important;
+    color: #64748b !important;
+  }
+  .franchise-step-card div[class*="mt-4 pt-3"] {
+    margin-top: 0.5rem !important;
+    padding-top: 0.375rem !important;
+    font-size: 0.5625rem !important; /* 9px */
+  }
+}
+
+
 
 

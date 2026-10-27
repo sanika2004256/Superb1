@@ -1133,10 +1133,10 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                     ]
                   }),
                   (0,k.jsxs)("div", {
-                    className: "space-y-3 pt-1",
+                    className: "franchise-equipment-grid space-y-3 pt-1",
                     children: [
                       (0,k.jsxs)("div", {
-                        className: "flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs",
+                        className: "franchise-equipment-card flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs",
                         children: [
                           (0,k.jsxs)("svg",{className:"w-4 h-4 text-emerald-600 shrink-0 mt-0.5",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2.5",strokeLinecap:"round",strokeLinejoin:"round",children:[(0,k.jsx)("path",{d:"M22 11.08V12a10 10 0 1 1-5.93-9.14"}),(0,k.jsx)("polyline",{points:"22 4 12 14.01 9 11.01"})]}),
                           (0,k.jsxs)("div", {
@@ -1149,7 +1149,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                         ]
                       }),
                       (0,k.jsxs)("div", {
-                        className: "flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs",
+                        className: "franchise-equipment-card flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs",
                         children: [
                           (0,k.jsxs)("svg",{className:"w-4 h-4 text-emerald-600 shrink-0 mt-0.5",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2.5",strokeLinecap:"round",strokeLinejoin:"round",children:[(0,k.jsx)("path",{d:"M22 11.08V12a10 10 0 1 1-5.93-9.14"}),(0,k.jsx)("polyline",{points:"22 4 12 14.01 9 11.01"})]}),
                           (0,k.jsxs)("div", {
@@ -1162,7 +1162,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                         ]
                       }),
                       (0,k.jsxs)("div", {
-                        className: "flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs",
+                        className: "franchise-equipment-card flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs",
                         children: [
                           (0,k.jsxs)("svg",{className:"w-4 h-4 text-emerald-600 shrink-0 mt-0.5",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2.5",strokeLinecap:"round",strokeLinejoin:"round",children:[(0,k.jsx)("path",{d:"M22 11.08V12a10 10 0 1 1-5.93-9.14"}),(0,k.jsx)("polyline",{points:"22 4 12 14.01 9 11.01"})]}),
                           (0,k.jsxs)("div", {
@@ -1175,7 +1175,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                         ]
                       }),
                       (0,k.jsxs)("div", {
-                        className: "flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs",
+                        className: "franchise-equipment-card flex items-start gap-3 p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-2xs",
                         children: [
                           (0,k.jsxs)("svg",{className:"w-4 h-4 text-emerald-600 shrink-0 mt-0.5",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2.5",strokeLinecap:"round",strokeLinejoin:"round",children:[(0,k.jsx)("path",{d:"M22 11.08V12a10 10 0 1 1-5.93-9.14"}),(0,k.jsx)("polyline",{points:"22 4 12 14.01 9 11.01"})]}),
                           (0,k.jsxs)("div", {
@@ -1222,7 +1222,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                 ]
               }),
               (0,k.jsxs)("div", {
-                className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5",
+                className: "franchise-advantages-grid grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-5",
                 children: [
                   (0,k.jsxs)("div", {
                     className: "franchise-advantage-card",
@@ -1294,7 +1294,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                 ]
               }),
               (0,k.jsxs)("div", {
-                className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5",
+                className: "franchise-steps-grid grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-5",
                 children: [
                   (0,k.jsxs)("div", {
                     className: "franchise-step-card",
