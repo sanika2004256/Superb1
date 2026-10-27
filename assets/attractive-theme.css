@@ -1957,3 +1957,13 @@ header nav button[title*="Cart"] span {
   }
 }
 
+/* Franchise Features / Tea Spot 4 Cards Mobile Grid (1 row 2 components) */
+@media (max-width: 639px) {
+  .franchise-features-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.625rem !important; /* 10px */
+  }
+}
+
+
