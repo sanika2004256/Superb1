@@ -1967,7 +1967,7 @@ header nav button[title*="Cart"] span {
 }
 
 /* ==========================================================================
-   MODAL & FORM ENHANCEMENTS FOR MOBILE & DESKTOP
+   MODAL & FORM ENHANCEMENTS FOR MOBILE & DESKTOP (NO SCROLLER)
    ========================================================================== */
 /* Ensure all modal backdrops sit comfortably above the mobile bottom bar */
 .fixed.inset-0.z-50,
@@ -1978,17 +1978,37 @@ div[role="dialog"] {
   z-index: 10000 !important;
 }
 
-/* Modal Enquiry Card scroll & mobile sizing */
+/* Completely hide scrollbars across all modals, cards, and dialogs */
+.modal-enquiry-card,
+.modal-dialog-card,
+.hide-scrollbar,
+div[class*="modal-enquiry-card"],
+.fixed.inset-0 .overflow-y-auto {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}
+.modal-enquiry-card::-webkit-scrollbar,
+.modal-dialog-card::-webkit-scrollbar,
+.hide-scrollbar::-webkit-scrollbar,
+div[class*="modal-enquiry-card"]::-webkit-scrollbar,
+.fixed.inset-0 .overflow-y-auto::-webkit-scrollbar {
+  display: none !important; /* Chrome, Safari, Opera, Edge */
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Modal Enquiry Card perfect fit on desktop & mobile */
 .modal-enquiry-card {
-  max-height: 86vh !important;
-  max-height: 86dvh !important;
+  max-height: 94vh !important;
+  max-height: 94dvh !important;
   overflow-y: auto !important;
   -webkit-overflow-scrolling: touch !important;
+  box-sizing: border-box !important;
 }
 
 @media (max-width: 639px) {
   .modal-enquiry-card {
-    padding: 1.25rem 1rem 1.75rem 1rem !important;
+    padding: 1.15rem 1rem 1.15rem 1rem !important;
     border-radius: 1.25rem !important;
   }
   .modal-enquiry-card input,
@@ -2019,7 +2039,7 @@ div[role="dialog"] {
 @media (min-width: 640px) {
   .modal-enquiry-card {
     max-height: 90vh !important;
-    padding: 2rem 2.25rem !important;
+    padding: 1.75rem 2rem !important;
   }
   .contact-form-card {
     padding: 2.5rem !important;
