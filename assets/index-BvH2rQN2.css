@@ -424,7 +424,7 @@
 }
 
 
-#products .bg-white:empty { display: none !important; }
+/* removed empty rule */
 /* Refined 3-Column Product Grid */
 .products-grid-5,
 .products-grid-3 {
