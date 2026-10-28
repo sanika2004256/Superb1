@@ -582,10 +582,10 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
               }),
               /* GLOBAL FOOTPRINT ACCENT */
               (0,k.jsxs)("div", {
-                className: "mt-8 sm:mt-9 pt-6 border-t border-slate-100 flex flex-wrap items-center gap-2.5 sm:gap-3",
+                className: "mt-8 sm:mt-9 pt-6 border-t border-slate-100 flex flex-wrap items-center gap-2 sm:gap-3 about-export-hubs-container",
                 children: [
                   (0,k.jsxs)("div", {
-                    className: "inline-flex items-center gap-2 font-bold text-slate-800 text-xs uppercase tracking-wider mr-2",
+                    className: "w-full sm:w-auto inline-flex items-center gap-2 font-bold text-slate-800 text-xs uppercase tracking-wider mb-1 sm:mb-0 mr-2 about-export-hubs-header",
                     children: [
                       (0,k.jsxs)("svg",{className:"w-5 h-5 text-blue-600",fill:"none",viewBox:"0 0 24 24",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",children:[(0,k.jsx)("circle",{cx:"12",cy:"12",r:"10"}),(0,k.jsx)("path",{d:"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"}),(0,k.jsx)("path",{d:"M2 12h20"})]}),
                       (0,k.jsx)("span", { children: "Active Export Hubs:" })
@@ -753,7 +753,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
                     ]
                   }),
                   (0,k.jsxs)("div", {
-                    className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5",
+                    className: "grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-5",
                     children: [
                       (0,k.jsxs)("div", {
                         className: "core-value-card",
@@ -809,7 +809,7 @@ var wO=[{id:1,name:`Rajesh Shinde`,role:`Franchise Owner, Tea Spot (Pune)`,ratin
 
               /* 3 DOMAIN PILLAR CARDS */
               (0,k.jsxs)("div", {
-                className: "grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6",
+                className: "grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-6",
                 children: [
                   (0,k.jsxs)("div", {
                     className: "pillar-card",
