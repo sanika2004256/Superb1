@@ -115,14 +115,14 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      background-color: #ffffff;
+      background: radial-gradient(ellipse at 50% 40%, #172033 0%, #0b0f19 70%, #030712 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 99999999;
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+      transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     #app-preloader.preloader-hidden {
@@ -138,27 +138,30 @@
       justify-content: center;
       text-align: center;
       padding: 1.5rem;
-      max-width: 320px;
+      max-width: 340px;
       width: 100%;
     }
 
-    .preloader-logo-wrap {
-      position: relative;
-      display: flex;
+    .preloader-logo-badge {
+      background: #ffffff;
+      padding: 16px 26px;
+      border-radius: 22px;
+      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.65), 0 0 35px rgba(217, 41, 6, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 50px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.75rem;
+      animation: preloaderLogoPulse 2.4s ease-in-out infinite;
     }
 
     .preloader-logo {
-      max-width: 220px;
+      max-width: 200px;
       width: 100%;
       height: auto;
-      max-height: 64px;
+      max-height: 56px;
       object-fit: contain;
       display: block;
-      animation: preloaderLogoPulse 2s ease-in-out infinite;
     }
 
     .preloader-spinner-wrap {
@@ -169,23 +172,24 @@
     }
 
     .preloader-spinner {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      border: 3px solid #fee2e2;
+      border: 3px solid rgba(255, 255, 255, 0.12);
       border-top-color: #d92906;
-      border-right-color: #d92906;
+      border-right-color: #f97316;
       animation: preloaderSpin 0.75s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(217, 41, 6, 0.5));
     }
 
     .preloader-bar {
-      width: 130px;
+      width: 140px;
       height: 3px;
-      background: #f1f5f9;
+      background: rgba(255, 255, 255, 0.12);
       border-radius: 9999px;
       overflow: hidden;
       position: relative;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.85rem;
     }
 
     .preloader-bar-fill {
@@ -194,16 +198,17 @@
       left: 0;
       bottom: 0;
       width: 45%;
-      background: linear-gradient(90deg, #d92906, #ea580c);
+      background: linear-gradient(90deg, #d92906, #f59e0b);
       border-radius: 9999px;
       animation: preloaderBarSlide 1.2s ease-in-out infinite;
+      box-shadow: 0 0 12px rgba(217, 41, 6, 0.6);
     }
 
     .preloader-text {
       font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #94a3b8;
       margin: 0;
@@ -220,8 +225,8 @@
         opacity: 1;
       }
       50% {
-        transform: scale(1.03);
-        opacity: 0.92;
+        transform: scale(1.025);
+        opacity: 0.94;
       }
     }
 
@@ -243,7 +248,7 @@
 
   <div id="app-preloader">
     <div class="preloader-content">
-      <div class="preloader-logo-wrap">
+      <div class="preloader-logo-badge">
         <img src="/images/logo.png" alt="Superb MegaCorp" class="preloader-logo" />
       </div>
       <div class="preloader-spinner-wrap">
