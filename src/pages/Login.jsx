@@ -20,7 +20,14 @@ export default function Login() {
     try {
       await setPersistence(auth, browserSessionPersistence);
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/dashboard');
+      const em = (email || '').trim().toLowerCase();
+      const isAdm = em.includes('admin') || em === 'admin@superbmegacorp.com' || em === 'superb_admin@superbmegacorp.com';
+      if (isAdm) {
+        sessionStorage.setItem('isAdmin', 'true');
+        navigate('/admin');
+      } else {
+        navigate('/account');
+      }
     } catch (err) {
       console.error("Login error:", err);
       if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
@@ -49,9 +56,9 @@ export default function Login() {
             className="h-16 object-contain mb-4 drop-shadow-sm"
           />
           <h1 className="text-xl font-extrabold text-slate-800 tracking-wider uppercase flex items-center gap-2">
-            Admin <span className="text-primary bg-primary/10 px-3 py-1 rounded-full text-sm">Portal</span>
+            Login in <span className="text-primary bg-primary/10 px-3 py-1 rounded-full text-sm">Superb</span>
           </h1>
-          <p className="text-sm text-slate-500 mt-2 font-medium text-center">Enter your credentials to access the dashboard</p>
+          <p className="text-sm text-slate-500 mt-2 font-medium text-center">Single sign-in for Customers and Administrators</p>
         </div>
         
         <div className="p-8">
