@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig';
 import { 
   FiMenu, FiX, FiHome, FiBox, FiList, 
   FiImage, FiFileText, FiMessageSquare, 
-  FiUsers, FiSettings, FiLogOut, FiGlobe, FiShoppingCart 
+  FiUsers, FiSettings, FiLogOut, FiGlobe, FiShoppingCart, FiMail
 } from 'react-icons/fi';
 
 export default function AdminLayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -25,150 +24,205 @@ export default function AdminLayout() {
 
   const navItems = [
     { name: 'Dashboard', path: '/dashboard', icon: <FiHome /> },
-    { name: 'Customers', path: '/customers', icon: <FiUsers /> },
-    { name: 'Customer Orders', path: '/orders', icon: <FiShoppingCart /> },
+    { name: 'Orders', path: '/orders', icon: <FiShoppingCart /> },
     { name: 'Products', path: '/products', icon: <FiBox /> },
     { name: 'Categories', path: '/categories', icon: <FiList /> },
+    { name: 'Customers', path: '/customers', icon: <FiUsers /> },
     { name: 'Franchise', path: '/franchise', icon: <FiUsers /> },
+    { name: 'Enquiries', path: '/enquiries', icon: <FiMessageSquare /> },
     { name: 'Gallery', path: '/gallery', icon: <FiImage /> },
     { name: 'Blogs', path: '/blogs', icon: <FiFileText /> },
-    { name: 'Enquiries', path: '/enquiries', icon: <FiMessageSquare /> },
-    { name: 'Messages', path: '/messages', icon: <FiMessageSquare /> },
+    { name: 'Messages', path: '/messages', icon: <FiMail /> },
     { name: 'Settings', path: '/settings', icon: <FiSettings /> },
   ];
 
   return (
-    <div className="flex h-screen bg-[#f8fafc] font-sans text-slate-800 selection:bg-primary/20 selection:text-primary">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col selection:bg-[#d92906] selection:text-white">
       
-      {/* Mobile sidebar overlay */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-sm lg:hidden transition-opacity"
-          onClick={() => setSidebarOpen(false)}
-        ></div>
-      )}
+      {/* TOP NAVIGATION BAR (REPLACES OLD VERTICAL SIDEBAR) */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16 sm:h-20 gap-3">
+            
+            {/* Brand Logo & Title */}
+            <div className="flex items-center gap-3 shrink-0">
+              <Link to="/dashboard" className="flex items-center gap-3 group">
+                <img 
+                  src="/images/logo.png" 
+                  alt="Superb MegaCorp" 
+                  className="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = 'https://superbmegacorp.com/wp-content/uploads/2021/01/new-logo-superb-mega-corp.png';
+                  }}
+                />
+                <div className="hidden sm:flex flex-col">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] font-extrabold text-slate-900 tracking-wider uppercase">Superb MegaCorp</span>
+                    <span className="text-[9px] font-bold bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full border border-purple-200/60">
+                      Admin Console
+                    </span>
+                  </div>
+                  <span className="text-[10px] font-bold text-[#d92906] tracking-widest uppercase">
+                    Management Desk
+                  </span>
+                </div>
+              </Link>
+            </div>
 
-      {/* Sidebar */}
-      <aside 
-        className={`fixed inset-y-0 left-0 z-50 w-72 bg-slate-900 text-slate-300 transform transition-transform duration-300 ease-out lg:static lg:translate-x-0 ${
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } flex flex-col shadow-2xl lg:shadow-none border-r border-slate-800/50`}
-      >
-        <div className="flex items-center justify-center h-20 px-6 bg-white shadow-sm z-10">
-          <img 
-            src="https://superbmegacorp.com/wp-content/uploads/2021/01/new-logo-superb-mega-corp.png" 
-            alt="Superb MegaCorp Logo" 
-            className="h-12 object-contain hover:scale-105 transition-transform duration-300"
-          />
-          <button 
-            className="ml-auto lg:hidden text-gray-500 hover:text-red-500 transition-colors p-2 rounded-full hover:bg-red-50"
-            onClick={() => setSidebarOpen(false)}
-          >
-            <FiX size={20} />
-          </button>
-        </div>
-        
-        <nav className="flex-1 overflow-y-auto py-6 custom-scrollbar">
-          <div className="px-5 mb-6">
-            <a 
-              href="/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2.5 w-full py-2.5 bg-slate-800/50 text-slate-300 rounded-xl hover:bg-slate-800 hover:text-white transition-all border border-slate-700/50 text-sm font-semibold shadow-sm hover:shadow-md"
-            >
-              <FiGlobe className="text-primary" />
-              View Public Website
-            </a>
+            {/* Desktop Navbar Menu (Horizontal) */}
+            <nav className="hidden xl:flex items-center gap-1 overflow-x-auto py-1 scrollbar-none">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.path || (item.path === '/dashboard' && location.pathname === '/');
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+                      isActive
+                        ? 'bg-[#d92906] text-white shadow-xs'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                    }`}
+                  >
+                    <span className={`text-sm ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                      {item.icon}
+                    </span>
+                    <span>{item.name}</span>
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Right Side: View Website, User Profile & Logout */}
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+              {/* Public Website Link */}
+              <a 
+                href="/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition-all border border-slate-200/80"
+                title="View Public Website"
+              >
+                <FiGlobe className="text-[#d92906]" size={14} />
+                <span className="hidden lg:inline">View Website</span>
+              </a>
+
+              {/* User Profile Pill */}
+              <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-full bg-slate-100/80 border border-slate-200 shadow-2xs">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-tr from-[#d92906] to-amber-500 flex items-center justify-center text-white font-black text-xs shadow-inner">
+                  AD
+                </div>
+                <div className="hidden lg:flex flex-col text-left pr-1">
+                  <span className="text-xs font-bold text-slate-800 leading-tight">Admin User</span>
+                  <span className="text-[9px] font-semibold text-slate-400 uppercase tracking-wider">Super Admin</span>
+                </div>
+              </div>
+
+              {/* Logout Button */}
+              <button 
+                onClick={handleLogout}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-red-600 hover:bg-red-50 hover:text-red-700 border border-red-200/60 transition-colors cursor-pointer"
+                title="Logout Account"
+              >
+                <FiLogOut size={15} />
+                <span className="hidden sm:inline">Logout</span>
+              </button>
+
+              {/* Mobile / Tablet Menu Toggle */}
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="xl:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+                aria-label="Toggle navigation menu"
+              >
+                {mobileMenuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+              </button>
+            </div>
+
           </div>
-          
-          <div className="px-3 mb-2 text-xs font-bold tracking-wider text-slate-500 uppercase ml-2">Menu</div>
-          <ul className="space-y-1.5 px-3">
-            {navItems.map((item) => (
-              <li key={item.name}>
+
+          {/* Sub-bar for medium screens (LG screens where 11 items might be snug) */}
+          <div className="hidden lg:flex xl:hidden border-t border-slate-100 py-2 items-center gap-1 overflow-x-auto scrollbar-none">
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.path || (item.path === '/dashboard' && location.pathname === '/');
+              return (
                 <Link
+                  key={item.name}
                   to={item.path}
-                  onClick={() => setSidebarOpen(false)}
-                  className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 group ${
-                    location.pathname === item.path 
-                      ? 'bg-primary text-white shadow-md shadow-primary/20 font-semibold' 
-                      : 'text-slate-400 hover:bg-slate-800/80 hover:text-slate-100 font-medium'
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+                    isActive
+                      ? 'bg-[#d92906] text-white shadow-xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
-                  <span className={`${location.pathname === item.path ? 'text-white' : 'text-slate-500 group-hover:text-primary'}`}>
+                  <span className={`text-sm ${isActive ? 'text-white' : 'text-slate-400'}`}>
                     {item.icon}
                   </span>
-                  <span className="text-sm tracking-wide">{item.name}</span>
+                  <span>{item.name}</span>
                 </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="p-5 border-t border-slate-800/80 bg-slate-900/50">
-          <button 
-            onClick={handleLogout}
-            className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-xl text-slate-400 font-medium text-sm hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/20 border border-transparent transition-all duration-200"
-          >
-            <FiLogOut className="text-lg" />
-            <span>Logout Account</span>
-          </button>
+              );
+            })}
+          </div>
         </div>
-      </aside>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-fixed">
-        {/* Top Header */}
-        <header className="h-16 sm:h-20 bg-white/85 backdrop-blur-md border-b border-slate-200/60 flex items-center justify-between px-3.5 sm:px-6 z-10 sticky top-0 transition-all">
-          <div className="flex items-center gap-3 sm:gap-4">
-            <button 
-              onClick={() => setSidebarOpen(true)}
-              className="lg:hidden text-slate-600 hover:text-primary transition-colors p-2.5 rounded-xl hover:bg-slate-100 active:scale-95 focus:outline-none"
-              aria-label="Open sidebar menu"
-            >
-              <FiMenu size={22} />
-            </button>
-            <div className="hidden sm:flex items-center relative group">
-              <span className="absolute left-4 text-slate-400 group-focus-within:text-primary transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-              </span>
-              <input 
-                type="text" 
-                placeholder="Search anything..." 
-                className="pl-10 pr-4 py-2.5 w-64 rounded-full bg-slate-100 border-transparent focus:bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm transition-all outline-none font-medium text-slate-700 placeholder:text-slate-400"
-              />
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="xl:hidden border-t border-slate-200 bg-white/98 backdrop-blur-xl shadow-xl px-4 py-4 space-y-1 animate-in slide-in-from-top duration-200">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 pb-3 border-b border-slate-100">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.path || (item.path === '/dashboard' && location.pathname === '/');
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center gap-2 p-2.5 rounded-xl text-xs font-bold transition-all ${
+                      isActive
+                        ? 'bg-[#d92906] text-white shadow-xs'
+                        : 'text-slate-700 hover:bg-slate-100'
+                    }`}
+                  >
+                    <span className="text-base">{item.icon}</span>
+                    <span className="truncate">{item.name}</span>
+                  </Link>
+                );
+              })}
+            </div>
+
+            <div className="pt-2 flex items-center justify-between">
+              <a 
+                href="/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-[#d92906]"
+              >
+                <FiGlobe className="text-[#d92906]" />
+                <span>View Public Website</span>
+              </a>
+              <button 
+                onClick={handleLogout}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 hover:text-red-700"
+              >
+                <FiLogOut />
+                <span>Logout</span>
+              </button>
             </div>
           </div>
-          
-          <div className="flex items-center gap-3 sm:gap-5 ml-auto">
-            <a 
-              href="/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="lg:hidden flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-semibold transition-colors"
-            >
-              <FiGlobe className="text-primary" size={14} />
-              <span>Site</span>
-            </a>
-            <div className="h-8 w-px bg-slate-200 hidden md:block"></div>
-            <div className="flex items-center gap-2 sm:gap-3 p-1 sm:p-1.5 sm:pr-4 rounded-full bg-white border border-slate-200 shadow-sm cursor-pointer hover:shadow-md transition-all">
-              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-primary to-blue-400 flex items-center justify-center text-white font-bold text-xs sm:text-sm shadow-inner">
-                AD
-              </div>
-              <div className="flex flex-col hidden sm:flex">
-                <span className="text-sm font-bold text-slate-800 leading-tight">Admin User</span>
-                <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Super Admin</span>
-              </div>
-            </div>
-          </div>
-        </header>
-        
-        {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-3.5 sm:p-6 lg:p-8 overscroll-contain">
-          <div className="max-w-7xl mx-auto">
-            <Outlet />
-          </div>
-        </main>
-      </div>
+        )}
+      </header>
+
+      {/* Main Content Area (Full Width, No Sidebar obstruction) */}
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <Outlet />
+      </main>
+
+      {/* Admin Footer */}
+      <footer className="border-t border-slate-200 bg-white/80 py-4 px-4 text-center text-xs text-slate-500 font-medium">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span>&copy; {new Date().getFullYear()} Superb MegaCorp India Pvt. Ltd. &bull; Management Desk</span>
+          <span className="text-[11px] text-slate-400">Enterprise Commercial Operations &amp; Consignment Management</span>
+        </div>
+      </footer>
+
     </div>
   );
 }
