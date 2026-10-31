@@ -11,6 +11,11 @@ export default defineConfig({
       name: 'rewrite-middleware',
       configureServer(server) {
         server.middlewares.use((req, res, next) => {
+          if (req.url === '/admin/login' || req.url.startsWith('/admin/login?') || req.url.startsWith('/admin/login/')) {
+            res.writeHead(302, { Location: '/login' });
+            res.end();
+            return;
+          }
           if (req.url.startsWith('/admin') && !req.url.includes('.')) {
             req.url = '/admin/index.html';
           }

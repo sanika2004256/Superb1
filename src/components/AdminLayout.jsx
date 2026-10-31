@@ -16,7 +16,8 @@ export default function AdminLayout() {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      navigate('/login');
+      sessionStorage.removeItem('isAdmin');
+      window.location.replace('/login');
     } catch (error) {
       console.error("Logout error", error);
     }

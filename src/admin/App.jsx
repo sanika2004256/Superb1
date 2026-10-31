@@ -5,7 +5,6 @@ import { auth } from '../firebase/firebaseConfig';
 import AdminLayout from '../components/AdminLayout';
 
 const Dashboard = lazy(() => import('../pages/Dashboard'));
-const Login = lazy(() => import('../pages/Login'));
 const Products = lazy(() => import('../pages/Products'));
 const Categories = lazy(() => import('../pages/Categories'));
 const Franchise = lazy(() => import('../pages/Franchise'));
@@ -22,6 +21,18 @@ const PageLoader = () => (
     <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin"></div>
   </div>
 );
+
+// Redirect any unauthenticated admin visit or /admin/login directly to the unified website login page
+const RedirectToUnifiedLogin = () => {
+  useEffect(() => {
+    window.location.replace('/login');
+  }, []);
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
+};
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -57,9 +68,10 @@ export default function App() {
   return (
     <Suspense fallback={<PageLoader />}>
       <Routes>
-        <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />      
+        {/* /admin/login redirects directly to unified /login */}
+        <Route path="/login" element={<RedirectToUnifiedLogin />} />      
         {/* Protected Admin Routes */}
-        <Route path="/" element={user ? <AdminLayout /> : <Navigate to="/login" />}>
+        <Route path="/" element={user ? <AdminLayout /> : <RedirectToUnifiedLogin />}>
           <Route index element={<Navigate to="/dashboard" />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="customers" element={<Customers />} />
@@ -75,9 +87,8 @@ export default function App() {
         </Route>
         
         {/* Fallback */}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        <Route path="*" element={user ? <Navigate to="/dashboard" /> : <RedirectToUnifiedLogin />} />
       </Routes>
     </Suspense>
   );
 }
-
