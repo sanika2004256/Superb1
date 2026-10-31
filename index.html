@@ -108,27 +108,37 @@
 </head>
 
 <body class="overflow-x-hidden w-full relative bg-slate-50 text-slate-800 antialiased font-sans">
-    <!-- App Fullscreen Brand Preloader -->
+    <!-- App Fullscreen Brand Preloader with Blur Screen Transition -->
   <style id="app-preloader-style">
     #app-preloader {
       position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(ellipse at 50% 40%, #172033 0%, #0b0f19 70%, #030712 100%);
+      background: radial-gradient(ellipse at 50% 40%, rgba(23, 32, 51, 0.94) 0%, rgba(11, 15, 25, 0.96) 70%, rgba(3, 7, 18, 0.98) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 99999999;
       opacity: 1;
       visibility: visible;
-      transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease-out, backdrop-filter 0.5s ease-out, -webkit-backdrop-filter 0.5s ease-out, visibility 0.5s ease-out;
+    }
+
+    #app-preloader.preloader-blur-stage {
+      background: rgba(11, 15, 25, 0.45) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
     }
 
     #app-preloader.preloader-hidden {
       opacity: 0 !important;
       visibility: hidden !important;
       pointer-events: none !important;
+      backdrop-filter: blur(0px) !important;
+      -webkit-backdrop-filter: blur(0px) !important;
     }
 
     .preloader-content {
@@ -140,6 +150,7 @@
       padding: 1.5rem;
       max-width: 340px;
       width: 100%;
+      transition: opacity 0.3s ease-out, transform 0.3s ease-out;
     }
 
     .preloader-logo-badge {
@@ -214,6 +225,25 @@
       margin: 0;
     }
 
+    /* Root blur transition to eliminate white flash */
+    #root.app-loading {
+      filter: blur(14px);
+      opacity: 0.85;
+      transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #root.app-revealing {
+      filter: blur(8px);
+      opacity: 0.95;
+      transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #root.app-ready {
+      filter: blur(0px) !important;
+      opacity: 1 !important;
+      transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
     @keyframes preloaderSpin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -265,46 +295,96 @@
     (function () {
       var preloader = document.getElementById('app-preloader');
       if (!preloader) return;
-      var minDisplayTime = 650;
+
+      var root = document.getElementById('root');
+      if (root) {
+        root.classList.add('app-loading');
+      }
+
+      var minDisplayTime = 700;
       var startTime = Date.now();
       var isDismissed = false;
+
+      function isWebsiteReady() {
+        if (!root) return false;
+        var nav = root.querySelector('nav, header, [class*="min-h-screen"]');
+        var textLength = root.innerText ? root.innerText.trim().length : 0;
+        return !!(nav && textLength > 20);
+      }
 
       function dismiss() {
         if (isDismissed) return;
         isDismissed = true;
-        var elapsed = Date.now() - startTime;
-        var remaining = Math.max(0, minDisplayTime - elapsed);
+
+        if (root) {
+          root.classList.remove('app-loading');
+          root.classList.add('app-revealing');
+        }
+
+        var content = preloader.querySelector('.preloader-content');
+        if (content) {
+          content.style.opacity = '0';
+          content.style.transform = 'scale(0.96)';
+        }
+
+        // Show the blur screen over the website
+        preloader.classList.add('preloader-blur-stage');
 
         setTimeout(function () {
           preloader.classList.add('preloader-hidden');
+          if (root) {
+            root.classList.remove('app-revealing');
+            root.classList.add('app-ready');
+          }
+
           setTimeout(function () {
             if (preloader && preloader.parentNode) {
               preloader.parentNode.removeChild(preloader);
             }
-          }, 450);
-        }, remaining);
+          }, 550);
+        }, 320);
       }
 
-      var root = document.getElementById('root');
-      if (root) {
-        if (root.children.length > 0) {
-          dismiss();
-        } else {
-          var observer = new MutationObserver(function (mutations, obs) {
-            if (root.children.length > 0) {
-              obs.disconnect();
-              dismiss();
-            }
-          });
-          observer.observe(root, { childList: true, subtree: true });
+      function checkAndTrigger() {
+        if (isDismissed) return;
+        if (isWebsiteReady()) {
+          var elapsed = Date.now() - startTime;
+          var remaining = Math.max(0, minDisplayTime - elapsed);
+          setTimeout(dismiss, remaining);
+          return true;
         }
+        return false;
+      }
+
+      if (root) {
+        var observer = new MutationObserver(function () {
+          if (checkAndTrigger()) {
+            observer.disconnect();
+          }
+        });
+        observer.observe(root, { childList: true, subtree: true });
       }
 
       window.addEventListener('load', function () {
-        setTimeout(dismiss, 300);
+        setTimeout(function () {
+          checkAndTrigger();
+        }, 200);
       });
 
-      setTimeout(dismiss, 3500);
+      var pollInterval = setInterval(function () {
+        if (isDismissed) {
+          clearInterval(pollInterval);
+          return;
+        }
+        if (checkAndTrigger()) {
+          clearInterval(pollInterval);
+        }
+      }, 100);
+
+      setTimeout(function () {
+        clearInterval(pollInterval);
+        dismiss();
+      }, 4000);
     })();
   </script>
   <div id="root"></div>

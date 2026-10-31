@@ -2799,3 +2799,171 @@ div[class*="modal-enquiry-card"]::-webkit-scrollbar,
     width: 35%;
   }
 }
+
+/* ==========================================================================
+   APP FULLSCREEN BRAND PRELOADER (BLUR SCREEN TRANSITION)
+   ========================================================================== */
+#app-preloader {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 40%, rgba(23, 32, 51, 0.94) 0%, rgba(11, 15, 25, 0.96) 70%, rgba(3, 7, 18, 0.98) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.4s ease-out, backdrop-filter 0.5s ease-out, -webkit-backdrop-filter 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+#app-preloader.preloader-blur-stage {
+  background: rgba(11, 15, 25, 0.45) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+#app-preloader.preloader-hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  backdrop-filter: blur(0px) !important;
+  -webkit-backdrop-filter: blur(0px) !important;
+}
+
+.preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  max-width: 340px;
+  width: 100%;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.preloader-logo-badge {
+  background: #ffffff;
+  padding: 16px 26px;
+  border-radius: 22px;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.65), 0 0 35px rgba(217, 41, 6, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+  animation: preloaderLogoPulse 2.4s ease-in-out infinite;
+}
+
+.preloader-logo {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  max-height: 56px;
+  object-fit: contain;
+  display: block;
+}
+
+.preloader-spinner-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.preloader-spinner {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  border-top-color: #d92906;
+  border-right-color: #f97316;
+  animation: preloaderSpin 0.75s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(217, 41, 6, 0.5));
+}
+
+.preloader-bar {
+  width: 140px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 0.85rem;
+}
+
+.preloader-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 45%;
+  background: linear-gradient(90deg, #d92906, #f59e0b);
+  border-radius: 9999px;
+  animation: preloaderBarSlide 1.2s ease-in-out infinite;
+  box-shadow: 0 0 12px rgba(217, 41, 6, 0.6);
+}
+
+.preloader-text {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* Root blur transition to eliminate white flash */
+#root.app-loading {
+  filter: blur(14px);
+  opacity: 0.85;
+  transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#root.app-revealing {
+  filter: blur(8px);
+  opacity: 0.95;
+  transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#root.app-ready {
+  filter: blur(0px) !important;
+  opacity: 1 !important;
+  transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes preloaderSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes preloaderLogoPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.025);
+    opacity: 0.94;
+  }
+}
+
+@keyframes preloaderBarSlide {
+  0% {
+    left: -40%;
+    width: 35%;
+  }
+  50% {
+    left: 30%;
+    width: 50%;
+  }
+  100% {
+    left: 100%;
+    width: 35%;
+  }
+}
