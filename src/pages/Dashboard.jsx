@@ -417,7 +417,8 @@ export default function Dashboard() {
         </div>
 
         {/* Responsive Table */}
-        <div className="overflow-x-auto">
+        {/* Desktop Table (Hidden on Mobile) */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase tracking-wider font-semibold">
@@ -539,6 +540,109 @@ export default function Dashboard() {
               )}
             </tbody>
           </table>
+        </div>
+        {/* Mobile Cards View (Clean, Native, No Horizontal Scroll) */}
+        <div className="block md:hidden divide-y divide-slate-100">
+          {filteredOrders.length === 0 ? (
+            <div className="py-12 text-center text-slate-400 text-xs">
+              No matching commercial orders found.
+            </div>
+          ) : (
+            filteredOrders.map((order) => {
+              const custName = order.customer?.name || order.customerDetails?.firstName || 'Valued Customer';
+              const custPhone = order.customer?.phone || order.customerDetails?.phone || '-';
+              const custCity = order.customer?.city || order.customerDetails?.city || 'India';
+              const custState = order.customer?.state || order.customerDetails?.state || '';
+              const totalAmt = Number(order.total || order.totalAmount || 0);
+              const gstVal = Math.round(order.gst || (totalAmt * 0.18) || 0);
+              const orderNum = order.orderNumber || (order.id ? order.id.slice(0, 12) : '1015128811');
+              const currentStatus = order.orderStatus || order.status || 'Confirmed';
+
+              return (
+                <div key={order.id} className="p-4 flex flex-col gap-3 hover:bg-slate-50/70 transition-colors">
+                  {/* Top Row: Order ID + Date & Payment Status Badge */}
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <Link 
+                        to={`/orders?id=${order.id}`}
+                        className="font-bold text-slate-900 hover:text-[#d92906] font-mono text-xs"
+                      >
+                        #{orderNum}
+                      </Link>
+                      <span className="text-[10px] text-slate-400">
+                        {order.createdAt ? new Date(order.createdAt).toLocaleDateString('en-IN') : 'Recent'}
+                      </span>
+                    </div>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full inline-block ${
+                      order.paymentStatus === 'Paid' 
+                        ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' 
+                        : 'bg-amber-100 text-amber-800 border border-amber-200'
+                    }`}>
+                      {order.paymentStatus || 'Pending'}
+                    </span>
+                  </div>
+
+                  {/* Customer Info & Amount */}
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <div className="font-bold text-slate-900 text-xs">{custName}</div>
+                      <div className="text-[11px] text-slate-500">{custPhone}</div>
+                      <div className="text-[10px] text-slate-400">
+                        {custCity}{custState ? `, ${custState}` : ''}
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <span className="font-extrabold text-slate-900 text-sm block">
+                        ₹{totalAmt.toLocaleString('en-IN')}
+                      </span>
+                      <span className="text-[10px] text-slate-400 block">
+                        Inc. ₹{gstVal} GST
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Items Summary */}
+                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-100 text-xs">
+                    <div className="text-slate-700 line-clamp-2">
+                      {order.items && order.items.length > 0 
+                        ? order.items.map(i => `${i.quantity || 1}× ${i.name}`).join(', ')
+                        : 'Standard Premix & Vending Consignment'}
+                    </div>
+                    <span className="text-[10px] text-slate-400 font-mono mt-0.5 block">
+                      {order.items?.length || 1} line items • {order.paymentMethod || 'COD'}
+                    </span>
+                  </div>
+
+                  {/* Actions Row: Status Select & Invoice Button */}
+                  <div className="flex items-center justify-between pt-1 gap-2">
+                    <div className="flex items-center gap-1.5 flex-1 max-w-[210px]">
+                      <span className="text-[10px] font-semibold text-slate-400 uppercase">Status:</span>
+                      <select
+                        value={currentStatus}
+                        onChange={(e) => handleStatusChange(order.id, e.target.value)}
+                        disabled={updatingId === order.id}
+                        className="text-xs font-bold rounded-xl border border-slate-200 px-2.5 py-1.5 bg-white focus:ring-1 focus:ring-[#d92906] cursor-pointer flex-1"
+                      >
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Dispatched">Dispatched</option>
+                        <option value="Delivered">Delivered</option>
+                        <option value="Cancelled">Cancelled</option>
+                      </select>
+                    </div>
+
+                    <Link
+                      to={`/orders`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-50 hover:bg-red-100 text-[#d92906] rounded-xl text-xs font-bold transition-colors border border-red-100"
+                      title="View Tax Invoice"
+                    >
+                      <FiFile className="w-3.5 h-3.5" />
+                      <span>Invoice</span>
+                    </Link>
+                  </div>
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
 

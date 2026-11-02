@@ -7,11 +7,12 @@ import {
   FiImage, FiFileText, FiMessageSquare, 
   FiUsers, FiSettings, FiLogOut, FiGlobe, 
   FiShoppingCart, FiMail, FiAward, FiSearch, 
-  FiHeart, FiChevronDown, FiUser
+  FiHeart, FiChevronDown, FiUser, FiGrid
 } from 'react-icons/fi';
 
 export default function AdminLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [adminMenuOpen, setAdminMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const location = useLocation();
@@ -67,6 +68,7 @@ export default function AdminLayout() {
   // User display name & avatar initial
   const userDisplayName = currentUser?.displayName || currentUser?.email?.split('@')[0] || 'superb_admin';
   const userInitial = (userDisplayName.charAt(0) || 'S').toUpperCase();
+  const activeNavItem = navItems.find(item => location.pathname === item.path || (item.path === '/dashboard' && (location.pathname === '/' || location.pathname === ''))) || navItems[0];
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col selection:bg-[#d92906] selection:text-white">
@@ -294,9 +296,8 @@ export default function AdminLayout() {
           ======================================================== */}
       <nav className="sticky top-16 sm:top-[68px] z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-2xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between gap-2 overflow-x-auto scrollbar-none py-2.5">
-            
-            {/* The 11 Admin Navigation Buttons */}
+          {/* Desktop Navigation (Full 11 items row) */}
+          <div className="hidden md:flex items-center justify-between gap-2 py-2.5">
             <div className="flex items-center gap-1 sm:gap-2 shrink-0">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.path || (item.path === '/dashboard' && (location.pathname === '/' || location.pathname === ''));
@@ -319,8 +320,8 @@ export default function AdminLayout() {
               })}
             </div>
 
-            {/* Right Side: 'View Website' Button (from Image 3) */}
-            <div className="hidden sm:flex items-center shrink-0 ml-auto pl-3 border-l border-slate-200">
+            {/* Right Side: 'View Website' Button */}
+            <div className="flex items-center shrink-0 ml-auto pl-3 border-l border-slate-200">
               <a 
                 href="/" 
                 target="_blank" 
@@ -332,7 +333,74 @@ export default function AdminLayout() {
                 <span>View Website</span>
               </a>
             </div>
+          </div>
 
+          {/* Mobile Navigation Header (Clean, Responsive, No Horizontal Clipping or Scroll) */}
+          <div className="md:hidden py-2.5">
+            <div className="flex items-center justify-between gap-2">
+              {/* Active Tab & Quick Links */}
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-[#d92906] text-white shadow-xs shrink-0">
+                  {activeNavItem.icon}
+                  <span>{activeNavItem.name}</span>
+                </span>
+                
+                {navItems
+                  .filter(i => i.name !== activeNavItem.name && ['Dashboard', 'Orders', 'Products'].includes(i.name))
+                  .slice(0, 2)
+                  .map(item => (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className="px-2.5 py-1.5 rounded-xl text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors shrink-0"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+              </div>
+
+              {/* Toggle All 11 Modules Button */}
+              <button
+                type="button"
+                onClick={() => setAdminMenuOpen(!adminMenuOpen)}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border shrink-0 cursor-pointer ${
+                  adminMenuOpen 
+                    ? 'bg-slate-800 text-white border-slate-800 shadow-xs' 
+                    : 'bg-slate-100 text-slate-700 border-slate-200/80 hover:bg-slate-200'
+                }`}
+                aria-label="Toggle all admin modules"
+              >
+                <FiGrid size={13} />
+                <span>All ({navItems.length})</span>
+                <FiChevronDown size={14} className={`transition-transform duration-200 ${adminMenuOpen ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
+
+            {/* Expandable Mobile Grid Sheet for All 11 Modules */}
+            {adminMenuOpen && (
+              <div className="pt-3 pb-1 border-t border-slate-100 mt-2.5 grid grid-cols-2 gap-2 animate-in slide-in-from-top-2 duration-150">
+                {navItems.map((item) => {
+                  const isActive = location.pathname === item.path || (item.path === '/dashboard' && (location.pathname === '/' || location.pathname === ''));
+                  return (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      onClick={() => setAdminMenuOpen(false)}
+                      className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                        isActive
+                          ? 'bg-[#d92906] text-white shadow-xs'
+                          : 'bg-slate-50 text-slate-700 hover:bg-slate-100 hover:text-slate-900 border border-slate-200/70'
+                      }`}
+                    >
+                      <span className={isActive ? 'text-white' : 'text-[#d92906]'}>
+                        {item.icon}
+                      </span>
+                      <span className="truncate">{item.name}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </nav>
